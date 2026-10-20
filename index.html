@@ -16,6 +16,9 @@
   header h1.brand { font-family: system-ui, -apple-system, "Segoe UI", Calibri, sans-serif; font-size:17px; font-weight:600;
                     margin:0; letter-spacing:.02em; } header h1.brand span { font-weight:400; color:#CFE3E8; }
   header p { margin:0; color:#CFE3E8; font-size:15px; }
+  .toc { background:var(--teal); color:#fff; padding:16px 16px 20px; }
+  .toc .wrap { max-width:1100px; margin:0 auto; }
+  .toc h2 { margin:0; font-size:17px; font-weight:600; letter-spacing:.02em; }
   nav { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
   nav button { border:1px solid rgba(255,255,255,.35); background:rgba(255,255,255,.08); color:#fff; border-radius:999px;
                padding:5px 11px; font:inherit; font-size:13.5px; cursor:pointer; }
@@ -72,8 +75,8 @@
   @media (max-width:640px) {
     header { padding:12px 12px 10px; }
     header p { font-size:13.5px; }
-    nav { flex-wrap:nowrap; overflow-x:auto; padding-bottom:4px; scrollbar-width:thin; }
-    nav button { flex:none; }
+    nav { flex-direction:column; gap:7px; }
+    nav button { text-align:left; padding:9px 14px; font-size:14.5px; border-radius:10px; }
     .hot .tag { font-size:0; width:16px; height:16px; padding:0; right:3px; top:3px; display:flex; align-items:center; justify-content:center; }
     .hot .tag::after { content:'+'; font-size:13px; font-weight:700; line-height:1; }
     .dh { padding:12px 14px 6px; } .db { padding:10px 14px 16px; } .dh h2 { font-size:19px; }
@@ -84,15 +87,20 @@
 <header>
   <div class="wrap">
     <h1 class="brand">H2CAST live poster <span>· TU Clausthal</span></h1>
-    <nav id="menu" aria-label="Interactive figures"></nav>
   </div>
 </header>
 <main>
-  <p class="hint">Tap a highlighted figure on the poster, or use the buttons above.</p>
+  <p class="hint">Tap a highlighted figure on the poster, or use the contents list below the poster.</p>
   <div id="poster">
     <img src="poster.jpg" width="2400" height="3393" alt="Poster: How flexibly can hydrogen salt caverns be cycled? TU Clausthal in H2CAST-Prove.">
   </div>
 </main>
+<section class="toc" id="contents" aria-labelledby="tocTitle">
+  <div class="wrap">
+    <h2 id="tocTitle">Contents – explore the poster</h2>
+    <nav id="menu" aria-label="Interactive figures"></nav>
+  </div>
+</section>
 <footer>
   <div class="wrap">
     <p><b>H2CAST-Prove</b> is funded by the German Federal Ministry for Economic Affairs and Energy (BMWE), funding code
