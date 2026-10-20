@@ -11,11 +11,16 @@
   * { box-sizing: border-box; }
   body { margin:0; background:var(--bg); color:var(--text);
          font-family: system-ui, -apple-system, "Segoe UI", Calibri, Roboto, sans-serif; line-height:1.45; }
-  header { background:var(--teal); color:#fff; padding:14px 16px 12px; }
+  header { background:#fff; color:var(--text); padding:12px 16px; border-bottom:4px solid var(--amber);
+           box-shadow:0 8px 0 var(--teal-d); margin-bottom:8px; }
   header .wrap, main, footer .wrap { max-width:1100px; margin:0 auto; }
-  header h1.brand { font-family: system-ui, -apple-system, "Segoe UI", Calibri, sans-serif; font-size:17px; font-weight:600;
-                    margin:0; letter-spacing:.02em; } header h1.brand span { font-weight:400; color:#CFE3E8; }
-  header p { margin:0; color:#CFE3E8; font-size:15px; }
+  header .bar { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  header .logo { height:58px; width:auto; display:block; }
+  header .title { flex:1; text-align:center; min-width:0; }
+  header h1.brand { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Calibri, sans-serif; font-size:32px;
+                    font-weight:700; color:var(--teal-d); letter-spacing:.03em; line-height:1.1; }
+  header .title span { display:block; font-size:14px; color:var(--muted); margin-top:3px; }
+  header .qr { width:116px; height:116px; display:block; image-rendering:pixelated; }
   .toc { background:var(--teal); color:#fff; padding:16px 16px 20px; }
   .toc .wrap { max-width:1100px; margin:0 auto; }
   .toc h2 { margin:0; font-size:17px; font-weight:600; letter-spacing:.02em; }
@@ -73,8 +78,12 @@
   .steps { display:grid; grid-template-columns:repeat(auto-fit, minmax(170px,1fr)); gap:10px; }
   .steps .card b { color:var(--amber-t); display:block; }
   @media (max-width:640px) {
-    header { padding:12px 12px 10px; }
-    header p { font-size:13.5px; }
+    header { padding:8px 10px; }
+    header .bar { gap:8px; }
+    header .logo { height:30px; }
+    header h1.brand { font-size:19px; }
+    header .title span { font-size:12px; } header .title .long { display:none; }
+    header .qr { width:68px; height:68px; }
     nav { flex-direction:column; gap:7px; }
     nav button { text-align:left; padding:9px 14px; font-size:14.5px; border-radius:10px; }
     .hot .tag { font-size:0; width:16px; height:16px; padding:0; right:3px; top:3px; display:flex; align-items:center; justify-content:center; }
@@ -86,11 +95,14 @@
 <body>
 <header>
   <div class="wrap">
-    <h1 class="brand">H2CAST live poster <span>· TU Clausthal</span></h1>
+    <div class="bar">
+      <img class="logo" src="img/logo_tuc.png" alt="TU Clausthal – Clausthal University of Technology">
+      <div class="title"><h1 class="brand">H2CAST-Prove</h1><span>Live poster<span class="long"> · H2CAST Infomarkt, Etzel, 10 November 2026</span></span></div>
+      <img class="qr" src="img/qr_live.png" alt="QR code: link to this live poster">
+    </div>
   </div>
 </header>
 <main>
-  <p class="hint">Tap a highlighted figure on the poster, or use the contents list below the poster.</p>
   <div id="poster">
     <img src="poster.jpg" width="2400" height="3393" alt="Poster: How flexibly can hydrogen salt caverns be cycled? TU Clausthal in H2CAST-Prove.">
   </div>
@@ -214,8 +226,8 @@ function etaLegend() {
 
 const WP = [
   ['PREDICT', [
-    ['Test scenarios TB1–TB3', 'AP 1.8', 'done', 'done', 'Gas-rate driven cycling of both caverns over 10 cycles each; all three scenarios evaluated and judged feasible (TB3 with the 17 MPa maximum).'],
-    ['Overflow test with brine shuttle (TB4)', 'AP 1.4', 'done', 'done', 'Brine raises the pressure in one cavern, then hydrogen flows over to the other without a compressor. Uncritical for the rock.'],
+    ['Trial run: test scenarios TB1–TB4', 'AP 1.4', 'done', 'done', 'Predictive FTK analysis of the planned trial run: TB1–TB3 gas-rate driven cycling (10 cycles each), TB4 brine-driven overflow. All four evaluated and judged feasible (TB3 with the 17 MPa maximum).'],
+    ['Test series at the operating limits', 'AP 1.8', 'next', 'next', 'Predictive analysis of planned test series at the technical limits of the operating range, based on the trial-run results (AP 1.6).'],
     ['One storage year: operating scenarios', 'AP 1.9', 'prog', 'in progress', 'The DLR storage profile 2045 is scaled to the two caverns so that the pressure stays in the permitted window – six scenarios.'],
     ['12-month operation: FTK prediction', 'AP 1.10', 'prog', 'in progress', '365-day coupled simulations of the scenarios. First result (variant with brine shuttle): η stays well below 1 all year.'],
     ['Convergence and surface subsidence', 'AP 2.9', 'prog', 'in progress', 'Model of both caverns up to the ground surface; comparison with measured ground movement follows.'],
@@ -240,7 +252,7 @@ VIEWS.workmap = { title: 'Our work packages and next steps', render(b) {
     h += `</div>`;
   });
   b.innerHTML = h + `<h3 style="margin:14px 0 6px;color:#0A333E">Next steps</h3><div class="steps">
-    <div class="card"><b>Now</b>Test scenarios TB1–TB4 done (AP 1.4, AP 1.8); the storage year (AP 1.9/1.10) is in progress.</div>
+    <div class="card"><b>Now</b>Test scenarios TB1–TB4 done (AP 1.4); the storage year (AP 1.9/1.10) is in progress.</div>
     <div class="card"><b>Next</b>Commissioning of the surface plant and the multi-cycle test operation at Etzel.</div>
     <div class="card"><b>Then</b>Measured pressures and temperatures compared with the FTK predictions (AP 1.6/1.7).</div>
     <div class="card"><b>Lab</b>Cyclic load tests with load paths from the cavern simulations (AP 2.7).</div></div>`;
