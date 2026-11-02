@@ -28,3 +28,6 @@ numbers. Fonts: Caladea, DejaVu Sans and Liberation Sans.
 
 Logos: TU Clausthal (`img/logo_tuc.svg`), BMWE funding logo (`img/logo_bmwe.svg`) and the partner logos in
 `img/partners/` – see `img/partners/SOURCES.md` for where each file comes from.
+
+Updated figures (November 2026) for Fig. 4, Fig. 6a and Fig. 7, as PNG, SVG and PDF at their printed size:
+`poster_figures_2026-11/`, see the README there. They are not yet built into `poster.html`.
