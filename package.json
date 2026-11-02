@@ -1,0 +1,13 @@
+{
+  "name": "h2cast-live-poster",
+  "private": true,
+  "description": "Interactive TU Clausthal poster for the H2CAST Infomarkt, Etzel; poster.jpg is rendered from poster/poster.html",
+  "scripts": {
+    "poster": "node poster/build.cjs",
+    "poster:pdf": "node poster/build.cjs --pdf poster.pdf",
+    "poster:check": "node poster/build.cjs --check"
+  },
+  "devDependencies": {
+    "playwright": "1.63.0"
+  }
+}

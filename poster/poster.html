@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>H2CAST-Prove poster – TU Clausthal (source of poster.jpg)</title>
+<title>H2CAST-Prove – How flexibly can hydrogen salt caverns be cycled? (TU Clausthal)</title>
 <!--
   Source of ../poster.jpg. Render it with:  node poster/build.cjs
   The build script injects the data (T27, TB4P, YEAR) from ../index.html, writes ../poster.jpg and
   updates the clickable areas (const HOT) in ../index.html from the elements marked with data-hot.
-  Canvas: 2400 × 3393 px (A0 portrait, 1 : √2). Colours: TU Clausthal corporate design.
+  Canvas: 2400 × 3393 px (A0 portrait, 1 : √2). Colours: TU Clausthal corporate design (green, grey 50 %, grey 10 %,
+  red); the cavern colours K358 blue / K365 magenta match the pop-up charts of the live page.
 -->
 <style>
   :root {
     --tuc: #008C4F;      /* TUC green: Pantone 348, CMYK 100/0/90/20, RGB 0/140/79 */
-    --tuc-d: #006B3C;    /* darker shade of TUC green for small green text */
     --g50: #808080;      /* TUC grey 50 % */
     --g10: #E6E6E6;      /* TUC grey 10 % */
     --red: #8C1C00;      /* TUC red */
@@ -48,15 +48,19 @@
   h1 { margin: 0; font-family: var(--title); font-weight: 700; font-size: 86px; line-height: 1.14; color: var(--tuc);
        text-wrap: balance; letter-spacing: -.005em; }
   .authors { margin-top: 20px; font-family: var(--title); font-weight: 700; font-size: 42px; color: var(--ink); }
-  .cols { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 80px; margin-top: 46px; }
+  .cols { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 80px; margin-top: 46px; }
   .col { min-height: 0; display: flex; flex-direction: column; }
   .col > :first-child { margin-top: 0; }
 
   h2 { font-family: var(--serif); font-weight: 700; font-size: 48px; line-height: 1.15; color: var(--tuc); margin: 34px 0 10px; }
-  p { margin: 0 0 12px; text-align: justify; hyphens: auto; }
+  /* free height of a column is shared out above its section headings (auto margins); build.cjs measures it with .measure */
+  .col > h2 { margin-top: auto; padding-top: 34px; }
+  .col > h2:first-child { margin-top: 0; padding-top: 0; }
+  .col.measure > h2 { margin-top: 0; }
+  p { margin: 0 0 12px; text-align: justify; hyphens: auto; hyphenate-limit-chars: 10 5 5; text-wrap: pretty; }
   ul { list-style: none; margin: 0 0 12px; padding: 0; }
-  li { position: relative; padding-left: 34px; margin: 0 0 8px; text-align: justify; hyphens: auto; }
-  li::before { content: ''; position: absolute; left: 6px; top: .52em; width: 11px; height: 11px; background: #555; }
+  li { position: relative; padding-left: 34px; margin: 0 0 8px; text-align: justify; hyphens: auto; hyphenate-limit-chars: 10 5 5; text-wrap: pretty; }
+  li::before { content: ''; position: absolute; left: 6px; top: .52em; width: 11px; height: 11px; background: var(--g50); }
   b.k { color: var(--ink); }
   sub, sup { line-height: 0; }
 
@@ -65,42 +69,43 @@
   .sub { display: flex; flex-direction: column; align-items: center; min-width: 0; }
   .sub > .lbl { font-family: var(--serif); font-size: 25px; color: var(--ink); margin-top: 4px; line-height: 1.1; }
   .sub img, .ph { display: block; }
-  figcaption { font-size: 24px; line-height: 1.25; color: var(--cap); margin-top: 8px; text-align: left; hyphens: auto; }
+  figcaption { font-size: 24px; line-height: 1.25; color: var(--cap); margin-top: 8px; text-align: left; hyphens: auto;
+               hyphenate-limit-chars: 10 5 5; text-wrap: pretty; }
   .ov { position: relative; overflow: hidden; flex: none; align-self: flex-start; }
   .ov img { position: absolute; left: 0; top: 0; width: 100%; height: auto; }
   .ov svg { position: absolute; inset: 0; width: 100%; height: 100%; }
   svg text { font-family: var(--sans); }
 
-  .key { background: var(--g10); border-left: 12px solid var(--tuc); padding: 14px 20px; margin: 4px 0 6px; }
-  .key p { margin: 0; text-align: left; }
-  .key b { color: var(--tuc-d); }
+  p.key { font-size: 30px; text-align: left; margin: 4px 0 44px; white-space: nowrap; }  /* room for the live page's tag */
+  p.key b { color: var(--tuc); }
 
   .side { display: flex; gap: 30px; align-items: flex-start; }
   .side > .txt { flex: 1; min-width: 0; }
 
-  .legend { display: grid; grid-template-columns: 24px auto; column-gap: 8px; align-items: center; font-family: var(--sans); font-size: 19px; line-height: 1; }
+  .legend { display: grid; grid-template-columns: 24px auto; flex: none; column-gap: 8px; align-items: center; font-family: var(--sans); font-size: 19px; line-height: 1; }
   .legend i { display: block; height: 21px; }
   .legend .ttl { grid-column: 1 / 3; font-size: 20px; font-weight: 700; margin-bottom: 8px; line-height: 1.1; }
 
-  .status li { padding-left: 0; }
+  .status li { padding-left: 0; text-align: left; }
   .status li::before { display: none; }
   .chip { display: inline-block; font-family: var(--sans); font-size: 22px; font-weight: 700; line-height: 1; padding: 6px 12px 7px;
           border-radius: 999px; margin-right: 10px; vertical-align: 3px; }
   .c-done { background: var(--tuc); color: #fff; }
-  .c-prog { background: #fff; color: var(--tuc-d); box-shadow: inset 0 0 0 3px var(--tuc); }
-  .c-next { background: var(--g10); color: #333; }
+  .c-prog { background: #fff; color: var(--tuc); box-shadow: inset 0 0 0 3px var(--tuc); }
+  .c-next { background: var(--g10); color: var(--cap); }
 
   footer { display: flex; align-items: center; gap: 40px; margin-top: 26px; }
   footer p { flex: 0 0 690px; margin: 0; font-size: 22px; line-height: 1.3; color: var(--cap); text-align: left; }
   .partners { flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 36px; }
   .partners img { display: block; width: auto; }
-  .partners .pname { font-family: var(--sans); font-weight: 700; font-size: 30px; color: #6B6B6B; white-space: nowrap; }
-  .fill { flex: 1; }
+  .partners .pname { font-family: var(--sans); font-weight: 700; font-size: 30px; color: var(--g50); white-space: nowrap; }
+  .fill { flex: 0 0 0; }
+  .col.measure .fill { flex: 1 1 0; }
 </style>
 </head>
 <body>
 <div id="poster">
-  <img class="logo" src="../img/logo_tuc.png" alt="TU Clausthal – Clausthal University of Technology">
+  <img class="logo" src="../img/logo_tuc.svg" alt="TU Clausthal – Clausthal University of Technology">
   <div class="proj"><b>H2CAST-Prove</b><span>H2CAST Infomarkt · Etzel · 10 November 2026</span></div>
   <img class="funder" src="../img/logo_bmwe.svg" alt="Gefördert durch: Bundesministerium für Wirtschaft und Energie aufgrund eines Beschlusses des Deutschen Bundestages">
   <div class="qr"><img src="../img/qr_live.svg" alt="QR code: live poster"><span>Live poster</span></div>
@@ -124,7 +129,7 @@
         <figure data-hot="ftk" data-label="How FTK couples mechanics and flow">
           <svg id="ftk" width="1000" height="340" viewBox="0 0 1000 340" role="img" aria-label="FTK coupling scheme"></svg>
           <figcaption>Fig. 1: FTK, TU Clausthal’s coupling of FLAC3D and TOUGH3. In every time interval Δt the boxes run in the
-            order 1, 2, 3; their results act in the next interval, and Δt adapts automatically.</figcaption>
+            order 1, 2, 3; the quantities sent back act in the next interval, and Δt adapts automatically.</figcaption>
         </figure>
         <div class="side">
           <div class="txt">
@@ -132,14 +137,15 @@
               <li><b class="k">Both caverns</b> are modelled as separate 11.25° segments, built from the 2023 sonar survey,
                 with the leaching history since 2011.</li>
               <li><b class="k">Criteria:</b> η &lt; 1 (dilatancy limit) and no tension at the wall. H<sub>2</sub> enters the
-                salt only where it dilates or where the gas pressure reaches the minimum principal stress.</li>
+                salt only where it dilates (porosity φ and permeability k rise) or where the gas pressure reaches the
+                minimum principal stress σ<sub>min</sub>.</li>
             </ul>
-            <figcaption>Fig. 2: Computed segments of rock salt, caprock and overburden; the overburden above the model top
-              acts as a surcharge load. Cavern bodies are shown revolved.</figcaption>
           </div>
-          <div class="ov" id="m3d" data-hot="model" data-label="How the simulation model is built"
+          <div class="ov" id="m3d" data-hot="model" data-label="How the simulation model is built" data-tag="in"
                style="width:410px;aspect-ratio:1300/1600"><img src="../img/model_3d.jpg" alt=""><svg viewBox="0 0 1300 1600"></svg></div>
         </div>
+        <figcaption>Fig. 2: Computed segments of rock salt, caprock and overburden; the overburden above the model top acts as a
+          surcharge load. Cavern bodies are shown revolved.</figcaption>
 
         <h2>Laboratory: is the well barrier tight?</h2>
         <figure data-hot="lab" data-label="Photos of the lab: specimens, curing vessels, rig">
@@ -149,20 +155,18 @@
             <div class="sub"><img class="ph" src="../img/lab_vessels.jpg" data-r="1.7007" alt=""><span class="lbl">(c)</span></div>
             <div class="sub"><img class="ph" src="../img/lab_cell.jpg" data-r="0.4734" alt=""><span class="lbl">(d)</span></div>
           </div>
-          <figcaption>Fig. 5: Specimens like the last cemented casing shoe – rock salt with a cemented borehole, and full cement.
-            (a) Rock salt, Ø 90 × 180 mm, with a 30 mm borehole, (b) casting the cement, (c) curing vessels: 28 days at 20 MPa,
-            (d) triaxial cell of the helium rig Dü22, designed and built at TU Clausthal.</figcaption>
+          <figcaption>Fig. 3: Specimens like the last cemented casing shoe – rock salt with a cemented borehole, and full cement.
+            (a) Rock salt with a 30&nbsp;mm borehole, (b) casting the cement, (c) curing vessels: 28&nbsp;days at 20&nbsp;MPa, (d) triaxial
+            cell of the helium rig Dü22, designed and built at TU Clausthal.</figcaption>
         </figure>
-        <figure data-hot="t27" data-label="Lab test No. 27: step through the test">
-          <svg id="t27" width="1000" height="440" viewBox="0 0 1000 440" role="img" aria-label="Lab test No. 27"></svg>
-          <figcaption>Fig. 6: Test No. 27, cement specimen (Ø 88 × 180 mm, 30 °C). Gas at the outlet: outlet-pump volume, not
-            yet calibrated.</figcaption>
+        <figure data-hot="t27" data-label="Lab test No. 27: step through the test" data-tag="in">
+          <svg id="t27" width="1000" height="476" viewBox="0 0 1000 476" role="img" aria-label="Lab test No. 27"></svg>
+          <figcaption>Fig. 4: Test No. 27, cement specimen (Ø&nbsp;88&nbsp;×&nbsp;180&nbsp;mm, 30&nbsp;°C), helium instead of hydrogen for safety.
+            (a) Full test, (b) last 30 hours. Gas at the outlet: outlet-pump volume, not yet calibrated.</figcaption>
         </figure>
         <ul>
-          <li><b class="k">Test No. 27:</b> σ<sub>1</sub> = 21 MPa, σ<sub>3</sub> = 20 MPa; the helium pressure is raised in
-            steps (helium instead of hydrogen, for safety).</li>
-          <li><b class="k">Tight up to 19.5 MPa:</b> no gas reached the outlet in 16.9 days. At 20.2 MPa, just above
-            σ<sub>3</sub>, gas came through after about 1 h – consistent with the infiltration criterion of the model.</li>
+          <li><b class="k">Result:</b> the cement stays tight while the gas pressure is below the confining stress σ<sub>3</sub>;
+            gas passes only once it exceeds σ<sub>3</sub> – consistent with the infiltration criterion of the model.</li>
           <li><b class="k">Permeability:</b> evaluation in progress (calibration of the gas pumps).</li>
         </ul>
         <div class="fill"></div>
@@ -171,62 +175,64 @@
       <!-- ============================== right column ============================== -->
       <div class="col" id="colR">
         <h2>Results: are the planned test scenarios safe?</h2>
-        <p>Predictive FTK simulations of the four planned test runs (AP 1.4): TB1–TB3 gas-rate driven, TB4 brine-driven.</p>
+        <p>Predictive FTK simulations of the four planned test runs TB1–TB4 (work package AP&nbsp;1.4): TB1–TB3 gas-rate driven,
+          TB4 brine-driven.</p>
         <figure data-hot="scenarios" data-label="Compare the four test scenarios">
           <div class="row" id="etaRow" style="align-items:center">
             <div class="legend" id="etaLegend"></div>
           </div>
-          <figcaption>Fig. 3: Dilatancy utilisation η in the rock salt around K358 and K365 (half sections; the white notch is
-            the cavern). TB1–TB3: K358 at minimum, K365 at maximum pressure; (d) TB4: overflow test.</figcaption>
+          <figcaption>Fig. 5: Dilatancy utilisation η in the rock salt around K358 and K365 (half sections; the white notch is
+            the cavern). (a)–(c) TB1–TB3: K358 at minimum, K365 at maximum pressure; (d) TB4: overflow test.</figcaption>
         </figure>
         <ul>
           <li><b class="k">TB1, TB2 – counter-phase gas cycling:</b> η &lt; 1 everywhere over 10 cycles, no dilatant damage.</li>
-          <li><b class="k">TB3 – full pressure range 5–17 MPa:</b> η reaches 1 only locally at the wall of the cavern at minimum
+          <li><b class="k">TB3 – full pressure range 5–17&nbsp;MPa:</b> η reaches 1 only locally at the wall of the cavern at minimum
             pressure and does not spread over 10 cycles.</li>
-          <li><b class="k">TB4 – brine-driven overflow:</b> η ≤ 0.6, no tension; the gas temperature changes by only about 7 K.</li>
+          <li><b class="k">TB4 – brine-driven overflow:</b> η ≤ 0.6, no tension; the gas temperature changes by only about 7&nbsp;K.</li>
         </ul>
-        <div class="key"><p><b>Key message:</b> all four test scenarios can be run – TB3 if the 17 MPa maximum is kept.</p></div>
+        <p class="key"><b>Key message:</b> all four test scenarios can be run – TB3 within the 17&nbsp;MPa limit.</p>
         <figure>
-          <div class="row" style="align-items:flex-start">
+          <div class="row">
             <div class="sub" data-hot="tb4" data-label="TB4: step through the overflow test">
-              <svg id="tb4" width="520" height="316" viewBox="0 0 520 316" role="img" aria-label="TB4 gas pressures"></svg>
+              <svg id="tb4" width="490" height="298" viewBox="0 0 520 316" role="img" aria-label="TB4 gas pressures"></svg>
               <span class="lbl">(a)</span></div>
             <div class="sub" data-hot="tight" data-label="Where can hydrogen enter the salt?">
               <div style="display:flex;gap:10px;align-items:stretch">
                 <div style="display:flex;flex-direction:column;font-family:var(--sans);font-size:18px;line-height:1.1">
                   <b style="margin-bottom:6px">H<sub>2</sub> [kg/m³]</b>
-                  <div style="display:flex;gap:6px"><img src="../img/infil_bar.png" alt="" style="width:20px;height:150px">
+                  <div style="display:flex;gap:6px"><img src="../img/infil_bar.png" alt="" style="width:17px;height:150px">
                     <div style="display:flex;flex-direction:column;justify-content:space-between"><span>11.6</span><span>0</span></div></div>
                 </div>
                 <div class="ov" id="infil" style="width:410px;aspect-ratio:1300/635"><img src="../img/infil_panels.jpg" alt=""><svg viewBox="0 0 1300 635"></svg></div>
               </div>
               <span class="lbl">(b)</span></div>
           </div>
-          <figcaption>Fig. 4: TB4 (FTK). (a) Brine pumped into K358 raises its gas pressure; after a standstill, H<sub>2</sub> flows
-            over to K365, driven only by the pressure difference – no compressor. (b) H<sub>2</sub> gas density in the pores at
-            the end of TB4: only a few zones at the cavern roofs take up hydrogen.</figcaption>
+          <figcaption>Fig. 6: TB4 (FTK). (a) Gas pressures: brine raises the pressure in K358; after a standstill, H<sub>2</sub>
+            flows over to K365 without a compressor. (b) H<sub>2</sub> gas density in the pores at the end of TB4: only a few
+            zones at the cavern roofs take up hydrogen.</figcaption>
         </figure>
 
         <h2>One storage year</h2>
         <figure data-hot="year" data-label="One storage year: move through the year">
           <svg id="year" width="1000" height="440" viewBox="0 0 1000 440" role="img" aria-label="One storage year"></svg>
-          <figcaption>Fig. 7: FTK, variant with brine shuttle (AP 1.10). η = highest utilisation 1–2 m behind the cavern wall.</figcaption>
+          <figcaption>Fig. 7: FTK, variant with brine shuttle (AP&nbsp;1.10). η = highest utilisation 1–2&nbsp;m behind the cavern wall.</figcaption>
         </figure>
         <ul>
           <li><b class="k">Input:</b> DLR hydrogen storage profile 2045, scaled to the two caverns. Brine keeps the gas pressure
-            constant: K358 11.3 MPa, K365 17.0 MPa.</li>
-          <li>About <b class="k">48 t of H<sub>2</sub></b> move from K365 to K358 and back; near the cavern wall η stays well
+            constant: K358 11.3&nbsp;MPa, K365 17.0&nbsp;MPa.</li>
+          <li>About <b class="k">48&nbsp;t of H<sub>2</sub></b> move from K365 to K358 and back; near the cavern wall η stays well
             below 1 all year, without tension.</li>
         </ul>
 
         <h2>Status and next steps</h2>
         <ul class="status" data-hot="workmap" data-label="Our work packages and next steps">
-          <li><span class="chip c-done">done</span>Test scenarios TB1–TB4 (AP 1.4), effect of the cavern conversion (AP 2.1),
-            Dü22 rig (AP 2.4), salt and cement specimens (AP 2.5).</li>
-          <li><span class="chip c-prog">in progress</span>One storage year (AP 1.9, 1.10), convergence and surface subsidence
-            (AP 2.9), helium tightness tests (AP 2.3).</li>
+          <li><span class="chip c-done">done</span>Test scenarios TB1–TB4 (AP&nbsp;1.4), effect of the cavern conversion (AP&nbsp;2.1),
+            Dü22 rig (AP&nbsp;2.4), salt and cement specimens (AP&nbsp;2.5).</li>
+          <li><span class="chip c-prog">in progress</span>One storage year (AP&nbsp;1.9, 1.10), convergence and surface subsidence
+            (AP&nbsp;2.9), helium tightness tests (AP&nbsp;2.3).</li>
           <li><span class="chip c-next">next</span>Multi-cycle test operation at Etzel, then measured vs. predicted data
-            (AP 1.6, 1.7); test series at the operating limits (AP 1.8); cyclic load tests (AP 2.7).</li>
+            (AP&nbsp;1.6, 1.7); test series at the operating limits (AP&nbsp;1.8); integrity under multi-cycle operation (AP&nbsp;2.2) and
+            long-term loads (AP&nbsp;2.6); cyclic load tests (AP&nbsp;2.7).</li>
         </ul>
         <div class="fill"></div>
       </div>
@@ -234,13 +240,13 @@
 
     <footer>
       <p><b>H2CAST-Prove</b> is funded by the BMWE, funding code 03EI3073C (TU Clausthal). Coordinator: STORAG ETZEL GmbH.
-        IEA Hydrogen TCP Task 53. AP = work package. Results are preliminary unless stated otherwise.</p>
+        IEA Hydrogen TCP Task 53. Results are preliminary unless stated otherwise.</p>
       <!-- partner logos: img/partners/<key>.svg or .png; a partner without a file is shown as plain text -->
       <div class="partners" id="partners">
         <span data-key="storag_etzel" data-name="STORAG ETZEL" data-h="68"></span>
         <span data-key="gasunie" data-name="Gasunie" data-h="64"></span>
         <span data-key="deep_kbb" data-name="DEEP.KBB" data-h="60"></span>
-        <span data-key="dlr" data-name="DLR – German Aerospace Center" data-h="82"></span>
+        <span data-key="dlr" data-name="DLR – German Aerospace Center" data-h="100"></span>
       </div>
     </footer>
   </div>
@@ -250,26 +256,28 @@
 // ------------------------------------------------------------------ helpers
 const NS = 'http://www.w3.org/2000/svg';
 const $ = s => document.querySelector(s);
-const C = { tuc: '#008C4F', tucd: '#006B3C', g50: '#808080', ink: '#1A1A1A', cap: '#4D4D4D', grid: '#E3E3E3', axis: '#8A8A8A',
-            red: '#8C1C00', k358: '#0072B2', k365: '#A2367C', he: '#1F5FA8', out: '#8E3B8F', s1: '#7A7A7A' };
-const T = (x, y, s, o = {}) => `<text x="${x}" y="${y}" font-size="${o.fs || 22}" fill="${o.c || C.ink}"${o.a ? ` text-anchor="${o.a}"` : ''}${o.w ? ` font-weight="${o.w}"` : ''}${o.r ? ` transform="rotate(${o.r} ${x} ${y})"` : ''}>${s}</text>`;
+// TUC palette (green, grey 50 %, grey 10 %, red) plus ink grey; K358 / K365 are the cavern colours of the live page
+const C = { tuc: '#008C4F', g50: '#808080', ink: '#1A1A1A', cap: '#4D4D4D', grid: '#E3E3E3', axis: '#8A8A8A',
+            red: '#8C1C00', k358: '#0072B2', k365: '#A2367C', he: '#008C4F', out: '#4D4D4D', s1: '#808080' };
+// text; o.halo draws a white outline so labels stay readable where they cross curves
+const T = (x, y, s, o = {}) => `<text x="${x}" y="${y}" font-size="${o.fs || 22}" fill="${o.c || C.ink}"${o.a ? ` text-anchor="${o.a}"` : ''}${o.w ? ` font-weight="${o.w}"` : ''}${o.r ? ` transform="rotate(${o.r} ${x} ${y})"` : ''}${o.halo ? ' stroke="#fff" stroke-width="6" stroke-linejoin="round" paint-order="stroke"' : ''}>${s}</text>`;
 const L = (x1, y1, x2, y2, c, w = 2, d = '') => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${c}" stroke-width="${w}"${d ? ` stroke-dasharray="${d}"` : ''}/>`;
 const poly = (xs, ys, fx, fy, c, w, d = '') => `<polyline fill="none" stroke="${c}" stroke-width="${w}" stroke-linejoin="round"${d ? ` stroke-dasharray="${d}"` : ''} points="${xs.map((x, i) => ys[i] === null ? '' : fx(x).toFixed(1) + ',' + fy(ys[i]).toFixed(1)).join(' ')}"/>`;
 // white rounded label box (image units) covering a baked-in label, with new text
 const chip = (x, y, w, h, lines, fs, o = {}) => {
   let s = `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.rx ?? 10}" fill="${o.bg || '#FDFDFD'}"${o.op ? ` fill-opacity="${o.op}"` : ''}/>`;
   const lh = fs * 1.12, y0 = y + h / 2 - (lines.length - 1) * lh / 2 + fs * 0.36;
-  lines.forEach((t, i) => s += `<text x="${o.a === 'middle' ? x + w / 2 : o.a === 'end' ? x + w - (o.pad ?? 14) : x + (o.pad ?? 14)}" y="${y0 + i * lh}" font-size="${fs}"${o.a ? ` text-anchor="${o.a}"` : ''} font-weight="${o.w || 400}" fill="${o.c || '#1E252B'}">${t}</text>`);
+  lines.forEach((t, i) => s += `<text x="${o.a === 'middle' ? x + w / 2 : o.a === 'end' ? x + w - (o.pad ?? 14) : x + (o.pad ?? 14)}" y="${y0 + i * lh}" font-size="${fs}"${o.a ? ` text-anchor="${o.a}"` : ''} font-weight="${o.w || 400}" fill="${o.c || C.ink}">${t}</text>`);
   return s;
 };
 
 // ------------------------------------------------------------------ Fig. 1: FTK coupling scheme
 (function ftk() {
-  const B = [[0, '1', 'Cavern', '#6E6E6E', ['H₂ mass and energy', 'balance → pressure', 'and temperature', 'of the gas']],
+  const B = [[0, '1', 'Cavern', C.g50, ['H₂ mass and energy', 'balance → pressure', 'and temperature', 'of the gas']],
              [370, '2', 'FLAC3D', C.tuc, ['rock-salt mechanics:', 'creep (temperature-', 'dependent), dilatancy,', 'damage, healing']],
-             [740, '3', 'TOUGH3', '#005C35', ['two-phase flow of', 'H₂ and water,', 'and heat']]];
+             [740, '3', 'TOUGH3', C.cap, ['two-phase flow of', 'H₂ and water,', 'and heat']]];
   const top = 62, hh = 54, bh = 200, w = 260;
-  let s = `<defs>${['#333', C.tuc, '#005C35', '#6E6E6E'].map((c, i) => `<marker id="a${i}" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="${c}"/></marker>`).join('')}</defs>`;
+  let s = `<defs>${[C.cap, C.tuc, C.cap, C.g50].map((c, i) => `<marker id="a${i}" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="${c}"/></marker>`).join('')}</defs>`;
   B.forEach(([x, n, h, c, body]) => {
     s += `<rect x="${x + 2}" y="${top}" width="${w - 4}" height="${bh}" rx="12" fill="#fff" stroke="${c}" stroke-width="4"/>
       <path d="M${x + 2} ${top + 12} a12 12 0 0 1 12 -12 h${w - 28} a12 12 0 0 1 12 12 v${hh - 12} h-${w - 4} z" fill="${c}"/>
@@ -278,19 +286,19 @@ const chip = (x, y, w, h, lines, fs, o = {}) => {
     body.forEach((t, i) => s += T(x + w / 2, top + hh + 38 + i * 29, t, { fs: 22, a: 'middle' }));
   });
   // top: p, T at the wall → TOUGH3
-  s += `<path d="M130 ${top} V30 H870 V${top - 2}" fill="none" stroke="#6E6E6E" stroke-width="3" marker-end="url(#a3)"/>`
-     + T(500, 22, 'pressure and temperature at the cavern wall (boundary condition for TOUGH3)', { fs: 21, a: 'middle', c: '#555' });
+  s += `<path d="M130 ${top} V30 H870 V${top - 2}" fill="none" stroke="${C.g50}" stroke-width="3" marker-end="url(#a3)"/>`
+     + T(500, 22, 'pressure and temperature at the cavern wall (boundary condition for TOUGH3)', { fs: 21, a: 'middle', c: C.cap });
   // 1 → 2 and gas volume back
-  s += L(262, 140, 364, 140, '#333', 3.5).replace('/>', ' marker-end="url(#a0)"/>') + T(315, 104, 'cavern', { fs: 20, a: 'middle' }) + T(315, 126, 'pressure', { fs: 20, a: 'middle' });
-  s += L(366, 196, 266, 196, C.tuc, 3, '9 6').replace('/>', ' marker-end="url(#a1)"/>') + T(315, 222, 'gas volume', { fs: 20, a: 'middle', c: C.tucd });
+  s += L(262, 140, 364, 140, C.cap, 3.5).replace('/>', ' marker-end="url(#a0)"/>') + T(315, 104, 'cavern', { fs: 20, a: 'middle' }) + T(315, 126, 'pressure', { fs: 20, a: 'middle' });
+  s += L(366, 196, 266, 196, C.tuc, 3, '9 6').replace('/>', ' marker-end="url(#a1)"/>') + T(315, 222, 'gas volume', { fs: 20, a: 'middle', c: C.tuc });
   // 2 → 3
-  s += L(632, 160, 734, 160, '#333', 3.5).replace('/>', ' marker-end="url(#a0)"/>') + T(683, 102, 'φ, k', { fs: 20, a: 'middle' })
-     + T(683, 126, 'σ<tspan font-size="14" dy="5">min</tspan>', { fs: 20, a: 'middle' }) + T(683, 148, '', { fs: 20 });
+  s += L(632, 160, 734, 160, C.cap, 3.5).replace('/>', ' marker-end="url(#a0)"/>') + T(683, 102, 'φ, k', { fs: 20, a: 'middle' })
+     + T(683, 128, 'σ<tspan font-size="17" dy="5">min</tspan>', { fs: 21, a: 'middle' });
   // 3 → 2 (p, S, T) and 3 → 1 (heat)
-  s += `<path d="M840 ${top + bh} V${top + bh + 30} H520 V${top + bh + 4}" fill="none" stroke="#005C35" stroke-width="3" marker-end="url(#a2)"/>`
-     + T(680, top + bh + 56, 'pore pressure p, saturation S, temperature T', { fs: 21, a: 'middle', c: '#005C35' });
-  s += `<path d="M930 ${top + bh} V${top + bh + 72} H130 V${top + bh + 4}" fill="none" stroke="#005C35" stroke-width="3" stroke-dasharray="9 6" marker-end="url(#a2)"/>`
-     + T(150, top + bh + 62, 'heat exchanged at the wall', { fs: 21, c: '#005C35' });
+  s += `<path d="M840 ${top + bh} V${top + bh + 30} H520 V${top + bh + 4}" fill="none" stroke="${C.cap}" stroke-width="3" marker-end="url(#a2)"/>`
+     + T(680, top + bh + 56, 'pore pressure p, saturation S, temperature T', { fs: 21, a: 'middle', c: C.cap });
+  s += `<path d="M930 ${top + bh} V${top + bh + 72} H130 V${top + bh + 4}" fill="none" stroke="${C.cap}" stroke-width="3" stroke-dasharray="9 6" marker-end="url(#a2)"/>`
+     + T(150, top + bh + 62, 'heat exchanged at the wall', { fs: 21, c: C.cap });
   $('#ftk').innerHTML = s;
 })();
 
@@ -298,7 +306,7 @@ const chip = (x, y, w, h, lines, fs, o = {}) => {
 (function model() {
   const F = 58;
   let s = '';
-  s += chip(12, 14, 600, 126, ['Computed model:', '11.25° segment'], F);
+  s += chip(12, 14, 600, 126, ['Computed segment'], F);
   s += chip(272, 210, 182, 96, ['K358'], 74, { a: 'middle', w: 700 });
   s += chip(872, 38, 182, 96, ['K365'], 74, { a: 'middle', w: 700 });
   s += chip(12, 380, 322, 92, ['Overburden'], F);
@@ -311,30 +319,35 @@ const chip = (x, y, w, h, lines, fs, o = {}) => {
   $('#m3d svg').innerHTML = s;
 })();
 
-// ------------------------------------------------------------------ Fig. 3: η panels with legend
+// ------------------------------------------------------------------ Fig. 5: η panels with legend
 (function eta() {
   const P = { TB1: [637, [[5, 358], [368, 633]]], TB2: [637, [[5, 358], [368, 633]]], TB3: [595, [[5, 345], [355, 591]]], TB4: [622, [[5, 353], [362, 619]]] };
   const crop = 76, H = 756 - crop;
   const cols = ['#ff0000','#ff7300','#ffe600','#aaff00','#37ff00','#00ff3c','#00ffaa','#00e1ff','#006eff','#0000ff'];
+  // each colour is a class of width 0.1, labelled as a range like the pop-up legend
   let lg = '<span class="ttl">η [–]</span>';
-  cols.forEach((c, i) => lg += `<i style="background:${c}"></i><span>${(1 - 0.1 * i).toFixed(1)}</span>`);
-  lg += `<i style="background:transparent"></i><span>0.0</span>`;
-  $('#etaLegend').innerHTML = lg + '<span style="grid-column:1/3;font-size:17px;margin-top:8px;line-height:1.15;color:#4D4D4D">1.0 = dilatancy<br>limit</span>';
-  const row = $('#etaRow'), legendW = 112, gap = 12;
+  cols.forEach((c, i) => lg += `<i style="background:${c}"></i><span>${(1 - 0.1 * i).toFixed(1)}–${(0.9 - 0.1 * i).toFixed(1)}</span>`);
+  $('#etaLegend').innerHTML = lg + '<span style="grid-column:1/3;font-size:19px;margin-top:8px;line-height:1.15;color:#4D4D4D">1.0 = dilatancy<br>limit</span>';
+  const row = $('#etaRow'), legendW = $('#etaLegend').getBoundingClientRect().width, gap = parseFloat(getComputedStyle(row).columnGap);
+  const rowW = row.getBoundingClientRect().width;
   const totalR = Object.values(P).reduce((a, [w]) => a + w / H, 0);
-  const h = Math.floor((1000 - legendW - gap * 4) / totalR);
+  const h = Math.floor((rowW - legendW - gap * 4) / totalR);
   Object.entries(P).forEach(([k, [W, panels]], i) => {
     const d = document.createElement('div'); d.className = 'sub';
     const wpx = (h * W / H).toFixed(1);
     let ov = '';
     panels.forEach(([a, b], j) => ov += chip(b - 8 - 170, 6, 170, 74, [j ? 'K365' : 'K358'], 52, { a: 'middle', w: 700, rx: 8, op: 0.95 }));
+    // TB3: the thin red rim (η ≈ 1) at the K358 wall is too narrow to see at poster scale, so point it out
+    if (k === 'TB3') ov += `<line x1="58" y1="${420 - crop}" x2="150" y2="${420 - crop}" stroke="#fff" stroke-width="7"/>`
+                         + `<circle cx="52" cy="${420 - crop}" r="9" fill="#fff"/>`
+                         + chip(150, 420 - crop - 40, 180, 80, ['η ≈ 1'], 54, { a: 'middle', w: 700, rx: 8, op: 0.95 });
     d.innerHTML = `<div class="ov" style="width:${wpx}px;aspect-ratio:${W}/${H}"><img src="../img/eta_${k}.png" alt="" style="top:${-crop / H * 100}%;height:${756 / H * 100}%;width:auto"><svg viewBox="0 ${0} ${W} ${H}" preserveAspectRatio="none"><g transform="translate(0,0)">${ov}</g></svg></div><span class="lbl">(${'abcd'[i]}) ${k}</span>`;
     row.appendChild(d);
   });
   row.style.justifyContent = 'space-between';
 })();
 
-// ------------------------------------------------------------------ Fig. 4b: infiltration labels (image units 1300 × 635)
+// ------------------------------------------------------------------ Fig. 6b: infiltration labels (image units 1300 × 635)
 (function infil() {
   $('#infil svg').innerHTML = chip(642 - 8 - 190, 8, 190, 82, ['K358'], 58, { a: 'middle', w: 700, rx: 8, op: .95 })
                             + chip(1300 - 8 - 190, 8, 190, 82, ['K365'], 58, { a: 'middle', w: 700, rx: 8, op: .95 });
@@ -346,7 +359,7 @@ function charts() {
     ['#t27', '#tb4', '#year'].forEach(id => $(id).innerHTML = T(20, 60, 'data missing: render with node poster/build.cjs', { fs: 26, c: C.red }));
     return;
   }
-  // ---------------- Fig. 4a: TB4 gas pressures
+  // ---------------- Fig. 6a: TB4 gas pressures
   {
     const D = TB4P, tmax = D.t[D.t.length - 1], P1 = 15.8, P2 = 25.9;
     const X0 = 70, X1 = 508, Y0 = 250, Y1 = 12, sx = t => X0 + (X1 - X0) * t / tmax, sy = p => Y0 - (Y0 - Y1) * (p - 12.6) / 4.7;
@@ -356,33 +369,51 @@ function charts() {
     [0, 5, 10, 15, 20, 25].forEach(t => s += T(sx(t), Y0 + 26, t, { fs: 21, a: 'middle', c: C.cap }));
     s += L(X0, Y0, X1, Y0, C.axis, 2) + L(X0, Y0, X0, Y1, C.axis, 2);
     s += T(sx(P1 / 2), sy(17.0), 'brine into K358', { fs: 19, a: 'middle', c: C.cap }) + T(sx((P1 + P2) / 2), sy(17.0), 'standstill', { fs: 19, a: 'middle', c: C.cap })
-       + T(sx((P2 + tmax) / 2), sy(17.0), 'H₂', { fs: 19, a: 'middle', c: C.cap });
+       + T(X1 - 3, sy(17.0), 'H₂', { fs: 17, a: 'end', c: C.cap }) + T(X1 - 3, sy(17.0) + 19, 'overflow', { fs: 17, a: 'end', c: C.cap });
     s += poly(D.t, D.K358, sx, sy, C.k358, 4) + poly(D.t, D.K365, sx, sy, C.k365, 4);
     s += T(sx(0.8), sy(16.25), 'K358', { fs: 21, w: 700, c: C.k358 }) + T(sx(0.8), sy(16.25) + 24, '(brine in, H₂ out)', { fs: 20, c: C.k358 })
        + T(sx(1.5), sy(12.95), 'K365 (H₂ in)', { fs: 21, w: 700, c: C.k365 });
     s += T(X0 + (X1 - X0) / 2, Y0 + 56, 'Time since start of TB4 [h]', { fs: 22, a: 'middle' }) + T(20, (Y0 + Y1) / 2, 'Gas pressure [MPa]', { fs: 22, a: 'middle', r: -90 });
     $('#tb4').innerHTML = s;
   }
-  // ---------------- Fig. 6: lab test No. 27
+  // ---------------- Fig. 4: lab test No. 27, (a) full test and (b) last 30 hours
   {
-    const D = T27, X0 = 92, X1 = 990, sx = t => X0 + (X1 - X0) * t / 17.2;
-    const yA0 = 236, yA1 = 12, sy = p => yA0 - (yA0 - yA1) * p / 23;           // stress / pressure panel
-    const yB0 = 382, yB1 = 274, sv = v => yB0 - (yB0 - yB1) * (v + 100) / 900;  // gas at outlet panel
-    let s = '';
+    const D = T27, tEnd = D.t[D.t.length - 1];
+    const yA0 = 236, yA1 = 12, yB0 = 382, yB1 = 274, sv = v => yB0 - (yB0 - yB1) * (v + 100) / 900;   // gas at outlet [ml]
+    // (a) full test
+    const X0 = 92, X1 = 640, sx = t => X0 + (X1 - X0) * t / 17.2, sy = p => yA0 - (yA0 - yA1) * p / 23;
+    // (b) last 30 hours, pressure axis 19–21.5 MPa
+    const Z0 = 742, Z1 = 990, tz0 = 15.85, tz1 = 17.1, zx = t => Z0 + (Z1 - Z0) * (t - tz0) / (tz1 - tz0), zy = p => yA0 - (yA0 - yA1) * (p - 19) / 2.5;
+    const iz = D.t.findIndex(t => t >= tz0), cut = A => A.slice(iz), tZ = cut(D.t);
+    const tStep = D.t[D.p_gas.findIndex(p => p > 20)];   // 19.5 → 20.2 MPa
+    let s = `<defs><clipPath id="zclip"><rect x="${Z0}" y="${yA1}" width="${Z1 - Z0}" height="${yA0 - yA1}"/></clipPath></defs>`;
     [0, 5, 10, 15, 20].forEach(p => s += L(X0, sy(p), X1, sy(p), C.grid, 1.5) + T(X0 - 10, sy(p) + 7, p, { fs: 21, a: 'end', c: C.cap }));
-    [0, 400, 800].forEach(v => s += L(X0, sv(v), X1, sv(v), C.grid, 1.5) + T(X0 - 10, sv(v) + 7, v, { fs: 21, a: 'end', c: C.cap }));
-    s += L(X0, yA0, X1, yA0, C.axis, 2) + L(X0, yA0, X0, yA1, C.axis, 2) + L(X0, yB0, X1, yB0, C.axis, 2) + L(X0, yB0, X0, yB1 - 6, C.axis, 2);
-    [0, 2, 4, 6, 8, 10, 12, 14, 16].forEach(d => s += T(sx(d), yB0 + 27, d, { fs: 21, a: 'middle', c: C.cap }));
-    s += poly(D.t, D.s1, sx, sy, C.s1, 2.5, '9 5') + poly(D.t, D.s3, sx, sy, C.tuc, 3) + poly(D.t, D.p_gas, sx, sy, C.he, 4)
+    [19, 20, 21].forEach(p => s += L(Z0, zy(p), Z1, zy(p), C.grid, 1.5) + T(Z0 - 10, zy(p) + 7, p, { fs: 21, a: 'end', c: C.cap }));
+    [0, 400, 800].forEach(v => s += L(X0, sv(v), X1, sv(v), C.grid, 1.5) + T(X0 - 10, sv(v) + 7, v, { fs: 21, a: 'end', c: C.cap })
+                                 + L(Z0, sv(v), Z1, sv(v), C.grid, 1.5) + T(Z0 - 10, sv(v) + 7, v, { fs: 21, a: 'end', c: C.cap }));
+    [[X0, X1], [Z0, Z1]].forEach(([a, b]) => s += L(a, yA0, b, yA0, C.axis, 2) + L(a, yA0, a, yA1, C.axis, 2) + L(a, yB0, b, yB0, C.axis, 2) + L(a, yB0, a, yB1 - 6, C.axis, 2));
+    [0, 4, 8, 12, 16].forEach(d => s += T(sx(d), yB0 + 27, d, { fs: 21, a: 'middle', c: C.cap }));
+    [16, 16.5, 17].forEach(d => s += T(zx(d), yB0 + 27, d.toFixed(1), { fs: 21, a: 'middle', c: C.cap }));
+    // zoom window marked in (a)
+    s += `<rect x="${sx(tz0)}" y="${yA1}" width="${X1 - sx(tz0)}" height="${yB0 - yA1}" fill="none" stroke="${C.g50}" stroke-width="1.5" stroke-dasharray="5 4"/>`;
+    s += poly(D.t, D.s1, sx, sy, C.s1, 2.5, '9 5') + poly(D.t, D.s3, sx, sy, C.s1, 3) + poly(D.t, D.p_gas, sx, sy, C.he, 4)
        + poly(D.t, D.p_out, sx, sy, C.out, 3) + poly(D.t, D.v_out, sx, sv, C.out, 3);
-    s += T(X0 + 10, sy(21) - 9, 'axial stress σ₁ = 21 MPa', { fs: 20, c: C.s1 })
-       + T(X0 + 10, sy(20) + 26, 'confining stress σ₃ = 20 MPa', { fs: 20, w: 700, c: C.tuc })
-       + T(sx(8.3), sy(9.4), 'helium pressure, inlet side:', { fs: 21, w: 700, c: C.he }) + T(sx(8.3), sy(9.4) + 25, 'raised in steps up to 20.2 MPa', { fs: 21, w: 700, c: C.he })
-       + T(sx(5.2), sy(0.2) - 10, 'gas pressure, outlet side: held at 0.2 MPa', { fs: 20, w: 700, c: C.out })
-       + T(sx(0.4), sv(60) - 14, 'gas received at the outlet: none up to 19.5 MPa (16.9 days)', { fs: 20, w: 700, c: C.out })
-       + T(sx(16.75), sv(560), 'breakthrough', { fs: 20, w: 700, a: 'end', c: C.red }) + T(sx(16.75), sv(560) + 23, 'at 20.2 MPa', { fs: 20, w: 700, a: 'end', c: C.red });
-    s += T(X0 + (X1 - X0) / 2, yB0 + 56, 'Time since test start [d]', { fs: 22, a: 'middle' })
+    s += '<g clip-path="url(#zclip)">' + poly(tZ, cut(D.s1), zx, zy, C.s1, 2.5, '9 5') + poly(tZ, cut(D.s3), zx, zy, C.s1, 3)
+       + poly(tZ, cut(D.p_gas), zx, zy, C.he, 4) + '</g>' + poly(tZ, cut(D.v_out), zx, sv, C.out, 3) + L(zx(tStep), yA1, zx(tStep), yB0, C.g50, 1.5, '4 4');
+    s += T(X0 + 10, sy(21) - 9, 'axial stress σ₁ = 21 MPa', { fs: 20, c: C.cap })
+       + T(X0 + 10, sy(20) + 26, 'confining stress σ₃ = 20 MPa', { fs: 20, w: 700, c: C.cap })
+       + T(sx(7.2), sy(8.4), 'helium pressure, inlet side:', { fs: 20, w: 700, c: C.he }) + T(sx(7.2), sy(8.4) + 24, 'raised in steps up to 20.2 MPa', { fs: 20, w: 700, c: C.he })
+       + T(sx(4.6), sy(0.2) - 10, 'outlet side: held at 0.2 MPa', { fs: 20, w: 700, c: C.out })
+       + T(sx(0.4), sv(60) - 14, 'gas at the outlet: none up to 19.5 MPa', { fs: 20, w: 700, c: C.out })
+       + T(sx(tz0) - 8, sv(560), 'breakthrough', { fs: 20, w: 700, a: 'end', c: C.red }) + T(sx(tz0) - 8, sv(560) + 23, 'at 20.2 MPa', { fs: 20, w: 700, a: 'end', c: C.red });
+    s += T(Z0 + 8, zy(21) - 8, 'σ₁', { fs: 19, c: C.cap }) + T(Z0 + 8, zy(20) + 22, 'σ₃', { fs: 19, w: 700, c: C.cap })
+       + T(zx(15.97) + 6, zy(19.5) + 28, '19.5 MPa: tight', { fs: 19, w: 700, c: C.he })
+       + T(zx(tStep) - 6, zy(20.2) - 12, '20.2 MPa > σ₃', { fs: 19, w: 700, a: 'end', c: C.he, halo: 1 })
+       + T(zx(tStep) - 8, sv(470), 'gas ≈ 1 h', { fs: 19, w: 700, a: 'end', c: C.red }) + T(zx(tStep) - 8, sv(470) + 22, 'after the step', { fs: 19, w: 700, a: 'end', c: C.red });
+    s += T(X0 + (X1 - X0) / 2, yB0 + 56, 'Time since test start [d]', { fs: 22, a: 'middle' }) + T(Z0 + (Z1 - Z0) / 2, yB0 + 56, 'Time [d]', { fs: 22, a: 'middle' })
        + T(20, (yA0 + yA1) / 2, 'Stress, pressure [MPa]', { fs: 22, a: 'middle', r: -90 }) + T(20, (yB0 + yB1) / 2 - 3, 'Gas [ml]', { fs: 22, a: 'middle', r: -90 });
+    s += `<text x="${X0 + (X1 - X0) / 2}" y="470" font-size="25" text-anchor="middle" font-family="Caladea, Cambria, Georgia, serif" fill="${C.ink}">(a)</text>`
+       + `<text x="${Z0 + (Z1 - Z0) / 2}" y="470" font-size="25" text-anchor="middle" font-family="Caladea, Cambria, Georgia, serif" fill="${C.ink}">(b)</text>`;
     $('#t27').innerHTML = s;
   }
   // ---------------- Fig. 7: one storage year
@@ -398,12 +429,12 @@ function charts() {
     s += L(X0, yA0, X1, yA0, C.axis, 2) + L(X0, yA0, X0, yA1, C.axis, 2) + L(X0, yB0, X1, yB0, C.axis, 2) + L(X0, yB0, X0, yB1 - 4, C.axis, 2);
     s += L(X0, ym(90), X1, ym(90), C.g50, 2, '8 6') + T(X0 + 10, ym(90) - 9, 'both caverns together: about 90 t', { fs: 19, c: C.cap });
     s += poly(D.day, D.m358, sx, ym, C.k358, 3.5) + poly(D.day, D.m365, sx, ym, C.k365, 3.5);
-    s += T(sx(105), ym(77), 'K358 is filled', { fs: 21, w: 700, c: C.k358 }) + T(sx(150), ym(14), 'K365 is emptied', { fs: 21, w: 700, c: C.k365 })
+    s += T(sx(40), ym(66), 'K358 is filled', { fs: 21, w: 700, c: C.k358, halo: 1 }) + T(sx(150), ym(19), 'K365 is emptied', { fs: 21, w: 700, c: C.k365, halo: 1 })
        + T(sx(328), ym(17), 'and back', { fs: 20, a: 'middle', c: C.cap }) + T(sx(328), ym(17) + 22, 'in winter', { fs: 20, a: 'middle', c: C.cap });
     s += `<rect x="${X0}" y="${ye(1.1)}" width="${X1 - X0}" height="${ye(1) - ye(1.1)}" fill="#F6E3DE"/>` + L(X0, ye(1), X1, ye(1), C.red, 3)
        + T(X0 + 10, ye(1) - 7, 'dilatancy limit η = 1', { fs: 19, w: 700, c: C.red });
     s += poly(D.day, D.e358, sx, ye, C.k358, 3) + poly(D.day, D.e365, sx, ye, C.k365, 3);
-    s += T(sx(4), ye(0.80), 'start reaction', { fs: 18, c: C.cap })
+    s += T(sx(4), ye(0.80), 'start reaction of the model', { fs: 18, c: C.cap })
        + T(X1 - 4, ye(0.82), 'K365 Aug–Nov: small gas space,', { fs: 18, a: 'end', c: C.k365 }) + T(X1 - 4, ye(0.82) + 20, 'numerically unsteady (upper estimate)', { fs: 18, a: 'end', c: C.k365 });
     s += T(X0 + (X1 - X0) / 2, yB0 + 56, 'Simulated storage year, 1 April to 31 March', { fs: 22, a: 'middle' })
        + T(20, (yA0 + yA1) / 2, 'Hydrogen [t]', { fs: 22, a: 'middle', r: -90 }) + T(20, (yB0 + yB1) / 2, 'Utilisation η', { fs: 22, a: 'middle', r: -90 });
@@ -423,7 +454,7 @@ window.partnersReady = Promise.all([...document.querySelectorAll('#partners [dat
   next();
 })));
 
-// ------------------------------------------------------------------ Fig. 5: lab photos, one common height filling the column
+// ------------------------------------------------------------------ Fig. 3: lab photos, one common height filling the column
 (function labRow() {
   const imgs = [...document.querySelectorAll('#labRow img')], gap = 18;
   const sumR = imgs.reduce((a, i) => a + Number(i.dataset.r), 0);

@@ -2,6 +2,7 @@
 
 | File | Logo | Source of this copy |
 |---|---|---|
+| `../logo_tuc.svg` | TU Clausthal logo: vector mark and wordmark (`Logo_TUC_de_rgb.SVG`), with the line “Clausthal University of Technology” from the earlier raster logo | github.com/gbv/reposis_clausthal (TU Clausthal library) |
 | `../logo_bmwe.svg` | BMWE funding logo "Gefördert durch … aufgrund eines Beschlusses des Deutschen Bundestages" (2025 version, `BMWE_gefoerdert_de_RGB.svg`, viewBox cropped to the artwork) | github.com/TUB-DVG/wissen-digital-ewb |
 | `dlr.svg` | DLR – Deutsches Zentrum für Luft- und Raumfahrt | github.com/eclipse-sumo/sumo.website |
 | `gasunie.svg` | Gasunie, with “crossing borders in energy” | github.com/raivo-otp/issuer-icons |

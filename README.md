@@ -10,18 +10,21 @@ Ministry for Economic Affairs and Energy (BMWE), funding code 03EI3073C (TU Clau
 
 ## Poster source
 
-`poster.jpg` is rendered from `poster/poster.html` (2400 × 3393 px, A0 portrait, TU Clausthal corporate colours:
-TUC green RGB 0/140/79, grey 50 %/10 %, TUC red RGB 140/28/0). After editing the poster, run
+`poster.jpg` is rendered from `poster/poster.html` (2400 × 3393 px, A0 portrait) in the TU Clausthal corporate colours
+(TUC green RGB 0/140/79, grey 50 %/10 %, TUC red RGB 140/28/0). After editing the poster:
 
 ```bash
-node poster/build.cjs
+npm install && npx playwright install chromium   # once
+npm run poster                                   # poster.jpg, img/ftk_scheme.png, clickable areas in index.html
+npm run poster:pdf                               # also poster.pdf for printing: A0 (841 × 1189 mm), vector text
 ```
 
-It writes `poster.jpg` and `img/ftk_scheme.png`, and updates the clickable areas (`const HOT`) in `index.html` from the
-elements marked `data-hot` in the poster. The charts use the data in `index.html` (`T27`, `TB4P`, `YEAR`), so poster and
-pop-ups show the same numbers. `node poster/build.cjs --pdf poster.pdf` also writes a vector PDF for printing (scale the
-page to A0); `--check` only reports layout problems such as an overflowing column. Requires Playwright with Chromium and
-the fonts Caladea, DejaVu Sans and Liberation Sans.
+`node poster/build.cjs` takes the same options directly: `--pdf out.pdf`, `--check` (layout check only, exit code 1 on
+problems), `--preview out.jpg` (render without touching the repo) and `--force` (write despite layout problems; by default
+nothing is written if a column overflows, an image is missing or a chart fails). The build also updates the clickable
+areas (`const HOT`) from the elements marked `data-hot`, and adds a version tag to `poster.jpg` in `index.html` so browsers
+load the new image. The charts use the data in `index.html` (`T27`, `TB4P`, `YEAR`), so poster and pop-ups show the same
+numbers. Fonts: Caladea, DejaVu Sans and Liberation Sans.
 
-Logos: TU Clausthal (`img/logo_tuc.png`), BMWE funding logo (`img/logo_bmwe.svg`) and the partner logos in
-`img/partners/` – see `img/partners/SOURCES.md` for where each file comes from and which are still missing.
+Logos: TU Clausthal (`img/logo_tuc.svg`), BMWE funding logo (`img/logo_bmwe.svg`) and the partner logos in
+`img/partners/` – see `img/partners/SOURCES.md` for where each file comes from.
