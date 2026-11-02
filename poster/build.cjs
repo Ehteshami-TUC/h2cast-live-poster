@@ -8,7 +8,7 @@
 //   node poster/build.cjs --force          write even if the layout check found problems
 //
 // Setup once: npm install && npx playwright install chromium   (see package.json; then: npm run poster)
-// The data of the charts (T27, TB4P, YEAR) is read from index.html, so the poster and the pop-ups show the same numbers.
+// Fig. 4, 6a and 7 are the SVG files in poster_figures_2026-11/; the pop-ups of index.html use the same data (T27, TB4P, YEAR).
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
@@ -33,16 +33,10 @@ if (pdfOut && (checkOnly || preview)) usage('--pdf cannot be combined with --che
 
 (async () => {
   let html = fs.readFileSync(INDEX, 'utf8');
-  const data = ['T27', 'TB4P', 'YEAR'].map(name => {
-    const m = html.match(new RegExp(`^const ${name} = (.*);[ \\t]*$`, 'm'));
-    if (!m) throw new Error(`const ${name} not found in index.html`);
-    return `window.${name} = ${m[1]};`;
-  }).join('\n');
 
   const browser = await chromium.launch();
   const open = async scale => {
     const page = await browser.newPage({ viewport: { width: 2400, height: 3393 }, deviceScaleFactor: scale });
-    await page.addInitScript(data);
     await page.goto('file://' + path.join(__dirname, 'poster.html'), { waitUntil: 'load' });
     await page.evaluate(async () => { await document.fonts.ready; if (window.partnersReady) await window.partnersReady;
       await Promise.all([...document.images].map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; }))); });
@@ -54,7 +48,6 @@ if (pdfOut && (checkOnly || preview)) usage('--pdf cannot be combined with --che
   page.on('console', m => { if (m.type() === 'error' && !m.text().startsWith('Failed to load resource')) errors.push(m.text()); });
   // a missing partner logo is expected (shown as text); any other missing file is an error
   page.on('requestfailed', r => { if (!r.url().includes('/img/partners/')) errors.push('missing: ' + r.url()); });
-  await page.addInitScript(data);
   await page.goto('file://' + path.join(__dirname, 'poster.html'), { waitUntil: 'load' });
   await page.evaluate(async () => { await document.fonts.ready; if (window.partnersReady) await window.partnersReady;
     await Promise.all([...document.images].map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; }))); });
