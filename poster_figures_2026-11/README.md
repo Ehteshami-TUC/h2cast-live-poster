@@ -60,3 +60,15 @@ Simulation and laboratory results are preliminary.
   - Input: DLR hydrogen storage profile 2045, scaled to the two caverns.
   - The gas pressures use the permitted range of 5–17 MPa.
   - η = highest utilisation of the observed zones at the cavern wall.
+
+## Text corrections (2 November 2026)
+
+The SVGs were edited so that the poster and the live-page pop-ups use the same terms; the PNG and PDF versions were
+regenerated from the edited SVGs with `node poster/export_figures.cjs` (fonts: Liberation Sans and Caladea, the
+metric-compatible equivalents of Arial and Cambria).
+
+- `fig4_test27`: y axis "Stress, gas pressure [MPa]" (two lines; was "Stress, pressure [MPa]").
+- `fig7_storage_year_V1` and `fig7_storage_year_V1_zones858_7323`: y axis of the lower panel "Dilatancy utilisation
+  factor η [–]" (three lines); "initial transient of the model" instead of "start reaction of the model".
+
+If the figures are generated again from their script, use these labels there as well.

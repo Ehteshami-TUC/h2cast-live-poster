@@ -5688,7 +5688,8 @@ L 983.374016 377.456693
    <text style="font-size: 22px; font-family: 'Arial', 'DejaVu Sans'; text-anchor: middle; fill: #1a1a1a" x="863.183858" y="435.068504" transform="rotate(-0 863.183858 435.068504)">Time since test start [d]</text>
   </g>
   <g id="text_37">
-   <text style="font-size: 22px; font-family: 'Arial', 'DejaVu Sans'; fill: #1a1a1a" transform="translate(27.546115 228.080054) rotate(-90)">Stress, pressure [MPa]</text>
+   <text style="font-size: 22px; font-family: 'Arial', 'DejaVu Sans'; text-anchor: middle; fill: #1a1a1a" transform="translate(20.5 116.216929) rotate(-90)">Stress, gas pressure</text>
+   <text style="font-size: 22px; font-family: 'Arial', 'DejaVu Sans'; text-anchor: middle; fill: #1a1a1a" transform="translate(44.866216 116.216929) rotate(-90)">[MPa]</text>
   </g>
   <g id="text_38">
    <text style="font-size: 22px; font-family: 'Arial', 'DejaVu Sans'; fill: #1a1a1a" transform="translate(22.57958 356.819154) rotate(-90)">Gas [ml]</text>
