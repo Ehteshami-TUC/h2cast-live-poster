@@ -22,3 +22,6 @@ elements marked `data-hot` in the poster. The charts use the data in `index.html
 pop-ups show the same numbers. `node poster/build.cjs --pdf poster.pdf` also writes a vector PDF for printing (scale the
 page to A0); `--check` only reports layout problems such as an overflowing column. Requires Playwright with Chromium and
 the fonts Caladea, DejaVu Sans and Liberation Sans.
+
+Logos: TU Clausthal (`img/logo_tuc.png`), BMWE funding logo (`img/logo_bmwe.svg`) and the partner logos in
+`img/partners/` – see `img/partners/SOURCES.md` for where each file comes from and which are still missing.

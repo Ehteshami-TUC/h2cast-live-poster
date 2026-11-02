@@ -31,10 +31,12 @@ const preview = args.includes('--preview') ? path.resolve(args[args.indexOf('--p
   const page = await browser.newPage({ viewport: { width: 2400, height: 3393 }, deviceScaleFactor: 1 });
   const errors = [];
   page.on('pageerror', e => errors.push(String(e)));
-  page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
+  page.on('console', m => { if (m.type() === 'error' && !m.text().startsWith('Failed to load resource')) errors.push(m.text()); });
+  // a missing partner logo is expected (shown as text); any other missing file is an error
+  page.on('requestfailed', r => { if (!r.url().includes('/img/partners/')) errors.push('missing: ' + r.url()); });
   await page.addInitScript(data);
   await page.goto('file://' + path.join(__dirname, 'poster.html'), { waitUntil: 'load' });
-  await page.evaluate(async () => { await document.fonts.ready;
+  await page.evaluate(async () => { await document.fonts.ready; if (window.partnersReady) await window.partnersReady;
     await Promise.all([...document.images].map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; }))); });
 
   // ---- layout checks: overflowing columns, broken images, text running out of its box
