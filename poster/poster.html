@@ -57,11 +57,12 @@
   .col > h2 { margin-top: auto; padding-top: 34px; }
   .col > h2:first-child { margin-top: 0; padding-top: 0; }
   .col.measure > h2 { margin-top: 0; }
-  p { margin: 0 0 12px; text-align: justify; hyphens: auto; hyphenate-limit-chars: 10 5 5; text-wrap: pretty; }
+  p { margin: 0 0 12px; text-align: justify; hyphens: auto; hyphenate-limit-chars: 12 6 6; text-wrap: pretty; }
   ul { list-style: none; margin: 0 0 12px; padding: 0; }
-  li { position: relative; padding-left: 34px; margin: 0 0 8px; text-align: justify; hyphens: auto; hyphenate-limit-chars: 10 5 5; text-wrap: pretty; }
+  li { position: relative; padding-left: 34px; margin: 0 0 8px; text-align: justify; hyphens: auto; hyphenate-limit-chars: 12 6 6; text-wrap: pretty; }
   li::before { content: ''; position: absolute; left: 6px; top: .52em; width: 11px; height: 11px; background: var(--g50); }
   b.k { color: var(--ink); }
+  .nb { white-space: nowrap; }
   sub, sup { line-height: 0; }
 
   figure { margin: 10px 0 14px; }
@@ -70,7 +71,7 @@
   .sub > .lbl { font-family: var(--serif); font-size: 25px; color: var(--ink); margin-top: 4px; line-height: 1.1; }
   .sub img, .ph, img.fig { display: block; }
   figcaption { font-size: 24px; line-height: 1.25; color: var(--cap); margin-top: 8px; text-align: left; hyphens: auto;
-               hyphenate-limit-chars: 10 5 5; text-wrap: pretty; }
+               hyphenate-limit-chars: 12 6 6; text-wrap: pretty; }
   .ov { position: relative; overflow: hidden; flex: none; align-self: flex-start; }
   .ov img { position: absolute; left: 0; top: 0; width: 100%; height: auto; }
   .ov svg { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -122,13 +123,13 @@
       <div class="col" id="colL">
         <h2>Motivation</h2>
         <p><b>H2CAST-Prove</b> tests highly flexible hydrogen storage in two converted salt caverns at Etzel, K358 and K365.
-          TU Clausthal predicts with coupled simulations whether the rock salt stays stable and tight, and tests the gas
-          tightness of rock salt and borehole cement in its own laboratory.</p>
+          TU Clausthal uses coupled simulations to predict whether the rock salt stays stable and tight, and tests the gas
+          tightness of rock salt and of the annulus cementation in its own laboratory.</p>
 
         <h2>The simulation model</h2>
         <figure data-hot="ftk" data-label="How FTK couples mechanics and flow">
           <svg id="ftk" width="1000" height="340" viewBox="0 0 1000 340" role="img" aria-label="FTK coupling scheme"></svg>
-          <figcaption>Fig. 1: FTK, TU Clausthal’s coupling of FLAC3D and TOUGH3. In every time interval Δt the boxes run in the
+          <figcaption>Fig. 1: FTK, TU Clausthal’s coupling of FLAC3D and TOUGH3. In every time interval Δt the three models run in the
             order 1, 2, 3; the quantities sent back act in the next interval, and Δt adapts automatically.</figcaption>
         </figure>
         <div class="side">
@@ -136,10 +137,10 @@
             <ul>
               <li><b class="k">Both caverns</b> are modelled as separate 11.25° segments, built from the 2023 sonar survey,
                 with the leaching history since 2011.</li>
-              <li><b class="k">Criteria:</b> η &lt; 1 (dilatancy limit) and no tension at the wall. H<sub>2</sub> enters the
-                salt only where it dilates (porosity φ and permeability k rise) or where the gas pressure reaches the
+              <li><b class="k">Criteria:</b> dilatancy utilisation factor η &lt; 1 and no tension at the wall. H<sub>2</sub> enters the
+                salt only where the salt dilates (porosity φ and permeability k rise) or where the gas pressure reaches the
                 minimum principal stress σ<sub>min</sub>.</li>
-              <li><b class="k">Mesh</b> refined towards the cavern wall, where creep and possible damage are evaluated.</li>
+              <li><b class="k">Mesh:</b> refined towards the cavern wall, where creep and possible damage are evaluated.</li>
             </ul>
           </div>
           <div class="ov" id="m3d" data-hot="model" data-label="How the simulation model is built"
@@ -148,15 +149,15 @@
         <figcaption>Fig. 2: Computed segments of rock salt, caprock and overburden; the overburden above the model top acts as a
           surcharge load. Cavern bodies are shown revolved.</figcaption>
 
-        <h2>Laboratory: is the well barrier tight?</h2>
-        <figure data-hot="lab" data-label="Photos of the lab: specimens, curing vessels, rig">
+        <h2 style="text-wrap:balance">Laboratory: is the annulus cementation gas-tight?</h2>
+        <figure data-hot="lab" data-label="Laboratory: specimens, curing vessels and the Dü22 rig">
           <div class="row" id="labRow">
             <div class="sub"><img class="ph" src="../img/lab_salt.jpg" data-r="1.3333" alt=""><span class="lbl">(a)</span></div>
             <div class="sub"><img class="ph" src="../img/lab_casting.jpg" data-r="0.4258" alt=""><span class="lbl">(b)</span></div>
             <div class="sub"><img class="ph" src="../img/lab_vessels.jpg" data-r="1.7007" alt=""><span class="lbl">(c)</span></div>
             <div class="sub"><img class="ph" src="../img/lab_cell.jpg" data-r="0.4734" alt=""><span class="lbl">(d)</span></div>
           </div>
-          <figcaption>Fig. 3: Specimens like the last cemented casing shoe – rock salt with a cemented borehole, and full cement.
+          <figcaption>Fig. 3: Specimens representing the last cemented casing shoe – rock salt with a cemented borehole, and full cement.
             (a)&nbsp;Rock salt with a 30&nbsp;mm borehole, (b)&nbsp;casting the cement, (c)&nbsp;curing vessels: 28&nbsp;days at 20&nbsp;MPa, (d)&nbsp;triaxial
             cell of the helium rig Dü22, designed and built at TU Clausthal.</figcaption>
         </figure>
@@ -166,7 +167,7 @@
             (a)&nbsp;Full test, (b)&nbsp;last 30&nbsp;hours. Gas at the outlet: outlet-pump volume, not yet calibrated.</figcaption>
         </figure>
         <ul>
-          <li><b class="k">Test No. 27:</b> tight up to 19.5&nbsp;MPa; gas passed at 20.2&nbsp;MPa, just above σ<sub>3</sub> – consistent
+          <li><b class="k">Test No. 27:</b> tight up to 19.5&nbsp;MPa; gas passed at 20.2&nbsp;MPa, just above the confining stress σ<sub>3</sub> – consistent
             with the infiltration criterion of the model.</li>
           <li><b class="k">Permeability:</b> evaluation in progress (calibration of the gas pumps).</li>
         </ul>
@@ -176,20 +177,20 @@
       <!-- ============================== right column ============================== -->
       <div class="col" id="colR">
         <h2>Results: are the planned test scenarios safe?</h2>
-        <p>Predictive FTK simulations of the four planned test runs TB1–TB4 (work package AP&nbsp;1.4): TB1–TB3 gas-rate driven,
+        <p>Predictive FTK simulations of the four planned test runs TB1–TB4 (work package AP&nbsp;1.4): TB1–TB3 gas-rate-driven,
           TB4 brine-driven.</p>
         <figure data-hot="scenarios" data-label="Compare the four test scenarios">
           <div class="row" id="etaRow" style="align-items:center">
             <div class="legend" id="etaLegend"></div>
           </div>
-          <figcaption>Fig. 5: Dilatancy utilisation η in the rock salt around K358 and K365 (half sections; the white notch is
-            the cavern). (a)–(c)&nbsp;TB1–TB3: K358 at minimum, K365 at maximum pressure; (d)&nbsp;TB4: overflow test.</figcaption>
+          <figcaption>Fig. 5: Dilatancy utilisation factor η around K358 and K365 (half sections; the white notch is
+            the cavern). (a)–(c)&nbsp;TB1–TB3: K358 at minimum, K365 at maximum gas pressure; (d)&nbsp;TB4: overflow test.</figcaption>
         </figure>
         <ul>
-          <li><b class="k">TB1, TB2 – counter-phase gas cycling:</b> η &lt; 1 everywhere over 10 cycles, no dilatant damage.</li>
-          <li><b class="k">TB3 – full pressure range 5–17&nbsp;MPa:</b> η reaches 1 only locally at the wall of the cavern at minimum
-            pressure and does not spread over 10 cycles.</li>
-          <li><b class="k">TB4 – brine-driven overflow:</b> η ≤ 0.6, no tension; the gas temperature changes by only about 7&nbsp;K.</li>
+          <li><b class="k">TB1, TB2 – counter-phase gas cycling:</b> dilatancy utilisation factor η &lt; 1 everywhere over 10 cycles, no dilatant damage.</li>
+          <li><b class="k">TB3 – full gas pressure range 5–17&nbsp;MPa:</b> utilisation factor η reaches 1 only locally at the cavern wall at minimum
+            gas pressure and does not spread over 10 cycles.</li>
+          <li><b class="k">TB4 – brine-driven overflow:</b> utilisation factor η ≤ 0.6, no tension; the gas temperature changes by only about 7&nbsp;K.</li>
         </ul>
         <p class="key"><b>Key message:</b> all four test scenarios can be run – TB3 within the 17&nbsp;MPa limit.</p>
         <figure>
@@ -200,30 +201,30 @@
             <div class="sub" data-hot="tight" data-label="Where can hydrogen enter the salt?">
               <div style="display:flex;gap:10px;align-items:stretch">
                 <div style="display:flex;flex-direction:column;font-family:var(--sans);font-size:18px;line-height:1.1">
-                  <b style="margin-bottom:6px">H<sub>2</sub> [kg/m³]</b>
-                  <div style="display:flex;gap:6px"><img src="../img/infil_bar.png" alt="" style="width:17px;height:150px">
+                  <b style="margin-bottom:6px">H<sub>2</sub> gas<br>density<br>[kg/m³]</b>
+                  <div style="display:flex;gap:6px"><img src="../img/infil_bar.png" alt="" style="width:16px;height:135px">
                     <div style="display:flex;flex-direction:column;justify-content:space-between"><span>11.6</span><span>0</span></div></div>
                 </div>
                 <div class="ov" id="infil" style="width:410px;aspect-ratio:1300/635"><img src="../img/infil_panels.jpg" alt=""><svg viewBox="0 0 1300 635"></svg></div>
               </div>
               <span class="lbl">(b)</span></div>
           </div>
-          <figcaption>Fig. 6: TB4 (FTK). (a)&nbsp;Gas pressures at the wellhead: brine raises the pressure in K358 (15&nbsp;h); after
+          <figcaption>Fig. 6: TB4 (FTK). (a)&nbsp;Gas pressures at the wellhead: brine raises the gas pressure in K358 (15&nbsp;h); after
             a 9&nbsp;h standstill, H<sub>2</sub> flows over to K365 without a compressor (4&nbsp;h). (b)&nbsp;H<sub>2</sub> gas density in the
             pores at the end of TB4, enlarged view of the cavern roofs: only a few zones take up hydrogen.</figcaption>
         </figure>
 
         <h2>One storage year</h2>
         <figure data-hot="year" data-label="One storage year: move through the year">
-          <img class="fig" src="../poster_figures_2026-11/fig7_storage_year_V1.svg" width="1000" alt="One storage year, variant V1: gas pressures and dilatancy utilisation of both caverns">
+          <img class="fig" src="../poster_figures_2026-11/fig7_storage_year_V1.svg" width="1000" alt="One storage year, variant V1: gas pressures and dilatancy utilisation factor η of both caverns">
           <figcaption>Fig. 7: FTK, one storage year without brine movement (variant V1, AP&nbsp;1.10). Input: DLR hydrogen storage
-            profile 2045, scaled to the two caverns. The gas pressures use the permitted range of 5–17&nbsp;MPa; η = highest
-            utilisation of the observed zones at the cavern wall.</figcaption>
+            profile 2045, scaled to the two caverns. The gas pressures vary within the permitted range of <span class="nb">5–17&nbsp;MPa</span>; dilatancy utilisation factor η = highest
+            value in the observed zones at the cavern wall.</figcaption>
         </figure>
         <ul>
-          <li><b class="k">Variant V1:</b> the gas itself is moved between the caverns, without brine. K358 runs between 5.5 and
+          <li><b class="k">Variant V1:</b> the gas itself is moved between the caverns, without brine. K358 is cycled between 5.5 and
             16.0&nbsp;MPa, K365 between 5.5 and 16.95&nbsp;MPa.</li>
-          <li>In operation <b class="k">η stays below 1</b>, and there is no tension at the cavern wall.</li>
+          <li>In operation, the dilatancy utilisation factor <b class="k">η stays below 1</b>, and there is no tension at the cavern wall.</li>
         </ul>
 
         <h2>Status and next steps</h2>
@@ -232,7 +233,7 @@
             Dü22 rig (AP&nbsp;2.4), salt and cement specimens (AP&nbsp;2.5).</li>
           <li><span class="chip c-prog">in progress</span>One storage year (AP&nbsp;1.9, 1.10), convergence and surface subsidence
             (AP&nbsp;2.9), helium tightness tests (AP&nbsp;2.3).</li>
-          <li><span class="chip c-next">next</span>Multi-cycle test operation at Etzel, then measured vs. predicted data
+          <li><span class="chip c-next">next</span>Multi-cycle test operation at Etzel, then comparison of measured and predicted data
             (AP&nbsp;1.6, 1.7); test series at the operating limits (AP&nbsp;1.8); integrity under multi-cycle operation (AP&nbsp;2.2) and
             long-term loads (AP&nbsp;2.6); cyclic load tests (AP&nbsp;2.7).</li>
         </ul>
@@ -276,7 +277,7 @@ const chip = (x, y, w, h, lines, fs, o = {}) => {
 (function ftk() {
   const B = [[0, '1', 'Cavern', C.g50, ['H₂ mass and energy', 'balance → pressure', 'and temperature', 'of the gas']],
              [370, '2', 'FLAC3D', C.tuc, ['rock-salt mechanics:', 'creep (temperature-', 'dependent), dilatancy,', 'damage, healing']],
-             [740, '3', 'TOUGH3', C.cap, ['two-phase flow of', 'H₂ and water,', 'and heat']]];
+             [740, '3', 'TOUGH3', C.cap, ['two-phase flow of', 'H₂ and water,', 'and heat flow']]];
   const top = 62, hh = 54, bh = 200, w = 260;
   let s = `<defs>${[C.cap, C.tuc, C.cap, C.g50].map((c, i) => `<marker id="a${i}" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="${c}"/></marker>`).join('')}</defs>`;
   B.forEach(([x, n, h, c, body]) => {
@@ -288,7 +289,7 @@ const chip = (x, y, w, h, lines, fs, o = {}) => {
   });
   // top: p, T at the wall → TOUGH3
   s += `<path d="M130 ${top} V30 H870 V${top - 2}" fill="none" stroke="${C.g50}" stroke-width="3" marker-end="url(#a3)"/>`
-     + T(500, 22, 'pressure and temperature at the cavern wall (boundary condition for TOUGH3)', { fs: 21, a: 'middle', c: C.cap });
+     + T(500, 22, 'gas pressure and temperature at the cavern wall (boundary condition for TOUGH3)', { fs: 21, a: 'middle', c: C.cap });
   // 1 → 2 and gas volume back
   s += L(262, 140, 364, 140, C.cap, 3.5).replace('/>', ' marker-end="url(#a0)"/>') + T(315, 104, 'cavern', { fs: 20, a: 'middle' }) + T(315, 126, 'pressure', { fs: 20, a: 'middle' });
   s += L(366, 196, 266, 196, C.tuc, 3, '9 6').replace('/>', ' marker-end="url(#a1)"/>') + T(315, 222, 'gas volume', { fs: 20, a: 'middle', c: C.tuc });
@@ -326,9 +327,9 @@ const chip = (x, y, w, h, lines, fs, o = {}) => {
   const crop = 76, H = 756 - crop;
   const cols = ['#ff0000','#ff7300','#ffe600','#aaff00','#37ff00','#00ff3c','#00ffaa','#00e1ff','#006eff','#0000ff'];
   // each colour is a class of width 0.1, labelled as a range like the pop-up legend
-  let lg = '<span class="ttl">η [–]</span>';
+  let lg = '<span class="ttl">Dilatancy<br>utilisation<br>factor η [–]</span>';
   cols.forEach((c, i) => lg += `<i style="background:${c}"></i><span>${(1 - 0.1 * i).toFixed(1)}–${(0.9 - 0.1 * i).toFixed(1)}</span>`);
-  $('#etaLegend').innerHTML = lg + '<span style="grid-column:1/3;font-size:19px;margin-top:8px;line-height:1.15;color:#4D4D4D">1.0 = dilatancy<br>limit</span>';
+  $('#etaLegend').innerHTML = lg + '<span style="grid-column:1/3;font-size:19px;margin-top:8px;line-height:1.15;color:#4D4D4D">1.0 = limit</span>';
   const row = $('#etaRow'), legendW = $('#etaLegend').getBoundingClientRect().width, gap = parseFloat(getComputedStyle(row).columnGap);
   const rowW = row.getBoundingClientRect().width;
   const totalR = Object.values(P).reduce((a, [w]) => a + w / H, 0);

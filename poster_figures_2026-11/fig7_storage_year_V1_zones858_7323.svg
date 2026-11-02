@@ -10603,7 +10603,7 @@ L 983.374016 377.456693
     <text style="font-weight: 700; font-size: 18px; font-family: 'Arial', 'DejaVu Sans'; text-anchor: end; fill: #8c1c00" x="976.107906" y="263.745626" transform="rotate(-0 976.107906 263.745626)">dilatancy limit η = 1</text>
    </g>
    <g id="text_27">
-    <text style="font-size: 16px; font-family: 'Arial', 'DejaVu Sans'; text-anchor: start; fill: #4d4d4d" x="121.129037" y="263.228067" transform="rotate(-0 121.129037 263.228067)">← start reaction of the model (first days, not operation)</text>
+    <text style="font-size: 16px; font-family: 'Arial', 'DejaVu Sans'; text-anchor: start; fill: #4d4d4d" x="121.129037" y="263.228067" transform="rotate(-0 121.129037 263.228067)">← initial transient of the model (first days, not operation)</text>
    </g>
    <g id="text_28">
     <text style="font-weight: 700; font-size: 18px; font-family: 'Arial', 'DejaVu Sans'; text-anchor: middle; fill: #1a1a1a" x="905.868849" y="333.711944" transform="rotate(-0 905.868849 333.711944)">K358: max 0.70</text>
@@ -10619,8 +10619,9 @@ L 983.374016 377.456693
    <text style="font-size: 22px; font-family: 'Arial', 'DejaVu Sans'; fill: #1a1a1a" transform="translate(29.532729 211.044195) rotate(-90)">Gas pressure [MPa]</text>
   </g>
   <g id="text_32">
-   <text style="font-size: 21px; font-family: 'Arial', 'DejaVu Sans'; fill: #1a1a1a" transform="translate(26.840243 358.407592) rotate(-90)">Utilisation</text>
-   <text style="font-size: 21px; font-family: 'Arial', 'DejaVu Sans'; fill: #1a1a1a" transform="translate(45.702714 362.496029) rotate(-90)">factor η [–]</text>
+   <text style="font-size: 19px; font-family: 'Arial', 'DejaVu Sans'; text-anchor: middle; fill: #1a1a1a" transform="translate(16 312.891732) rotate(-90)">Dilatancy</text>
+   <text style="font-size: 19px; font-family: 'Arial', 'DejaVu Sans'; text-anchor: middle; fill: #1a1a1a" transform="translate(34 312.891732) rotate(-90)">utilisation</text>
+   <text style="font-size: 19px; font-family: 'Arial', 'DejaVu Sans'; text-anchor: middle; fill: #1a1a1a" transform="translate(52 312.891732) rotate(-90)">factor η [–]</text>
   </g>
  </g>
  <defs>
