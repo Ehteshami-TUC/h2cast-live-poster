@@ -91,7 +91,6 @@ if (pdfOut && (checkOnly || preview)) usage('--pdf cannot be combined with --che
       const r = e.getBoundingClientRect(), pad = 8;
       const h = { id: e.dataset.hot, label: e.dataset.label };
       if (e.dataset.menu === 'false') h.menu = false;
-      if (e.dataset.tag) h.tag = e.dataset.tag;     // "in": the "explore" tag sits inside the corner (content above)
       Object.assign(h, { l: r2((r.left - pad - P.left) / P.width * 100), t: r2((r.top - pad - P.top) / P.height * 100),
                          w: r2((r.width + 2 * pad) / P.width * 100), h: r2((r.height + 2 * pad) / P.height * 100) });
       return h;

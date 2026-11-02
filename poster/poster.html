@@ -76,10 +76,10 @@
   .ov svg { position: absolute; inset: 0; width: 100%; height: 100%; }
   svg text { font-family: var(--sans); }
 
-  p.key { font-size: 30px; text-align: left; margin: 4px 0 44px; white-space: nowrap; }  /* room for the live page's tag */
+  p.key { font-size: 30px; text-align: left; margin: 4px 0 10px; white-space: nowrap; }
   p.key b { color: var(--tuc); }
 
-  .side { display: flex; gap: 30px; align-items: flex-start; }
+  .side { display: flex; gap: 30px; align-items: center; }
   .side > .txt { flex: 1; min-width: 0; }
 
   .legend { display: grid; grid-template-columns: 24px auto; flex: none; column-gap: 8px; align-items: center; font-family: var(--sans); font-size: 19px; line-height: 1; }
@@ -139,9 +139,10 @@
               <li><b class="k">Criteria:</b> η &lt; 1 (dilatancy limit) and no tension at the wall. H<sub>2</sub> enters the
                 salt only where it dilates (porosity φ and permeability k rise) or where the gas pressure reaches the
                 minimum principal stress σ<sub>min</sub>.</li>
+              <li><b class="k">Mesh</b> refined towards the cavern wall, where creep and possible damage are evaluated.</li>
             </ul>
           </div>
-          <div class="ov" id="m3d" data-hot="model" data-label="How the simulation model is built" data-tag="in"
+          <div class="ov" id="m3d" data-hot="model" data-label="How the simulation model is built"
                style="width:410px;aspect-ratio:1300/1600"><img src="../img/model_3d.jpg" alt=""><svg viewBox="0 0 1300 1600"></svg></div>
         </div>
         <figcaption>Fig. 2: Computed segments of rock salt, caprock and overburden; the overburden above the model top acts as a
@@ -156,17 +157,17 @@
             <div class="sub"><img class="ph" src="../img/lab_cell.jpg" data-r="0.4734" alt=""><span class="lbl">(d)</span></div>
           </div>
           <figcaption>Fig. 3: Specimens like the last cemented casing shoe – rock salt with a cemented borehole, and full cement.
-            (a) Rock salt with a 30&nbsp;mm borehole, (b) casting the cement, (c) curing vessels: 28&nbsp;days at 20&nbsp;MPa, (d) triaxial
+            (a)&nbsp;Rock salt with a 30&nbsp;mm borehole, (b)&nbsp;casting the cement, (c)&nbsp;curing vessels: 28&nbsp;days at 20&nbsp;MPa, (d)&nbsp;triaxial
             cell of the helium rig Dü22, designed and built at TU Clausthal.</figcaption>
         </figure>
-        <figure data-hot="t27" data-label="Lab test No. 27: step through the test" data-tag="in">
+        <figure data-hot="t27" data-label="Lab test No. 27: step through the test">
           <svg id="t27" width="1000" height="476" viewBox="0 0 1000 476" role="img" aria-label="Lab test No. 27"></svg>
           <figcaption>Fig. 4: Test No. 27, cement specimen (Ø&nbsp;88&nbsp;×&nbsp;180&nbsp;mm, 30&nbsp;°C), helium instead of hydrogen for safety.
-            (a) Full test, (b) last 30 hours. Gas at the outlet: outlet-pump volume, not yet calibrated.</figcaption>
+            (a)&nbsp;Full test, (b)&nbsp;last 30&nbsp;hours. Gas at the outlet: outlet-pump volume, not yet calibrated.</figcaption>
         </figure>
         <ul>
-          <li><b class="k">Result:</b> the cement stays tight while the gas pressure is below the confining stress σ<sub>3</sub>;
-            gas passes only once it exceeds σ<sub>3</sub> – consistent with the infiltration criterion of the model.</li>
+          <li><b class="k">Test No. 27:</b> tight up to 19.5&nbsp;MPa; gas passed at 20.2&nbsp;MPa, just above σ<sub>3</sub> – consistent
+            with the infiltration criterion of the model.</li>
           <li><b class="k">Permeability:</b> evaluation in progress (calibration of the gas pumps).</li>
         </ul>
         <div class="fill"></div>
@@ -182,7 +183,7 @@
             <div class="legend" id="etaLegend"></div>
           </div>
           <figcaption>Fig. 5: Dilatancy utilisation η in the rock salt around K358 and K365 (half sections; the white notch is
-            the cavern). (a)–(c) TB1–TB3: K358 at minimum, K365 at maximum pressure; (d) TB4: overflow test.</figcaption>
+            the cavern). (a)–(c)&nbsp;TB1–TB3: K358 at minimum, K365 at maximum pressure; (d)&nbsp;TB4: overflow test.</figcaption>
         </figure>
         <ul>
           <li><b class="k">TB1, TB2 – counter-phase gas cycling:</b> η &lt; 1 everywhere over 10 cycles, no dilatant damage.</li>
@@ -207,9 +208,9 @@
               </div>
               <span class="lbl">(b)</span></div>
           </div>
-          <figcaption>Fig. 6: TB4 (FTK). (a) Gas pressures: brine raises the pressure in K358; after a standstill, H<sub>2</sub>
-            flows over to K365 without a compressor. (b) H<sub>2</sub> gas density in the pores at the end of TB4: only a few
-            zones at the cavern roofs take up hydrogen.</figcaption>
+          <figcaption>Fig. 6: TB4 (FTK). (a)&nbsp;Gas pressures: brine raises the pressure in K358; after a standstill, H<sub>2</sub>
+            flows over to K365 without a compressor. (b)&nbsp;H<sub>2</sub> gas density in the pores at the end of TB4, enlarged view of the cavern roofs: only a few
+            zones take up hydrogen.</figcaption>
         </figure>
 
         <h2>One storage year</h2>
