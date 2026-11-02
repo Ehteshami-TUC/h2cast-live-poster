@@ -23,11 +23,12 @@ npm run poster:pdf                               # also poster.pdf for printing:
 problems), `--preview out.jpg` (render without touching the repo) and `--force` (write despite layout problems; by default
 nothing is written if a column overflows, an image is missing or a chart fails). The build also updates the clickable
 areas (`const HOT`) from the elements marked `data-hot`, and adds a version tag to `poster.jpg` in `index.html` so browsers
-load the new image. The charts use the data in `index.html` (`T27`, `TB4P`, `YEAR`), so poster and pop-ups show the same
-numbers. Fonts: Caladea, DejaVu Sans and Liberation Sans.
+load the new image. Fonts: Caladea, DejaVu Sans and Liberation Sans.
 
 Logos: TU Clausthal (`img/logo_tuc.svg`), BMWE funding logo (`img/logo_bmwe.svg`) and the partner logos in
 `img/partners/` – see `img/partners/SOURCES.md` for where each file comes from.
 
-Updated figures (November 2026) for Fig. 4, Fig. 6a and Fig. 7, as PNG, SVG and PDF at their printed size:
-`poster_figures_2026-11/`, see the README there. They are not yet built into `poster.html`.
+Fig. 4, Fig. 6a and Fig. 7 are the figure files in `poster_figures_2026-11/` (November 2026; SVG, PNG and PDF at their
+printed size, see the README there). `poster/poster.html` shows the SVGs; to change a figure, replace its file and run
+`npm run poster`. The pop-ups of the live page use the same data: `T27` (test No. 27), and `TB4P` and `YEAR` (variant V1),
+which were read from the SVG curves of Fig. 6a and Fig. 7.

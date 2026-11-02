@@ -68,7 +68,7 @@
   .row { display: flex; justify-content: space-between; align-items: flex-end; gap: 18px; }
   .sub { display: flex; flex-direction: column; align-items: center; min-width: 0; }
   .sub > .lbl { font-family: var(--serif); font-size: 25px; color: var(--ink); margin-top: 4px; line-height: 1.1; }
-  .sub img, .ph { display: block; }
+  .sub img, .ph, img.fig { display: block; }
   figcaption { font-size: 24px; line-height: 1.25; color: var(--cap); margin-top: 8px; text-align: left; hyphens: auto;
                hyphenate-limit-chars: 10 5 5; text-wrap: pretty; }
   .ov { position: relative; overflow: hidden; flex: none; align-self: flex-start; }
@@ -161,7 +161,7 @@
             cell of the helium rig Dü22, designed and built at TU Clausthal.</figcaption>
         </figure>
         <figure data-hot="t27" data-label="Lab test No. 27: step through the test">
-          <svg id="t27" width="1000" height="476" viewBox="0 0 1000 476" role="img" aria-label="Lab test No. 27"></svg>
+          <img class="fig" src="../poster_figures_2026-11/fig4_test27.svg" width="1000" alt="Lab test No. 27: stresses, helium pressure and gas at the outlet; full test and last 30 hours">
           <figcaption>Fig. 4: Test No. 27, cement specimen (Ø&nbsp;88&nbsp;×&nbsp;180&nbsp;mm, 30&nbsp;°C), helium instead of hydrogen for safety.
             (a)&nbsp;Full test, (b)&nbsp;last 30&nbsp;hours. Gas at the outlet: outlet-pump volume, not yet calibrated.</figcaption>
         </figure>
@@ -195,7 +195,7 @@
         <figure>
           <div class="row">
             <div class="sub" data-hot="tb4" data-label="TB4: step through the overflow test">
-              <svg id="tb4" width="490" height="298" viewBox="0 0 520 316" role="img" aria-label="TB4 gas pressures"></svg>
+              <img class="fig" src="../poster_figures_2026-11/fig6a_tb4_pressure.svg" width="490" alt="TB4: gas pressures of K358 and K365 at the wellhead">
               <span class="lbl">(a)</span></div>
             <div class="sub" data-hot="tight" data-label="Where can hydrogen enter the salt?">
               <div style="display:flex;gap:10px;align-items:stretch">
@@ -208,21 +208,22 @@
               </div>
               <span class="lbl">(b)</span></div>
           </div>
-          <figcaption>Fig. 6: TB4 (FTK). (a)&nbsp;Gas pressures: brine raises the pressure in K358; after a standstill, H<sub>2</sub>
-            flows over to K365 without a compressor. (b)&nbsp;H<sub>2</sub> gas density in the pores at the end of TB4, enlarged view of the cavern roofs: only a few
-            zones take up hydrogen.</figcaption>
+          <figcaption>Fig. 6: TB4 (FTK). (a)&nbsp;Gas pressures at the wellhead: brine raises the pressure in K358 (15&nbsp;h); after
+            a 9&nbsp;h standstill, H<sub>2</sub> flows over to K365 without a compressor (4&nbsp;h). (b)&nbsp;H<sub>2</sub> gas density in the
+            pores at the end of TB4, enlarged view of the cavern roofs: only a few zones take up hydrogen.</figcaption>
         </figure>
 
         <h2>One storage year</h2>
         <figure data-hot="year" data-label="One storage year: move through the year">
-          <svg id="year" width="1000" height="440" viewBox="0 0 1000 440" role="img" aria-label="One storage year"></svg>
-          <figcaption>Fig. 7: FTK, variant with brine shuttle (AP&nbsp;1.10). η = highest utilisation 1–2&nbsp;m behind the cavern wall.</figcaption>
+          <img class="fig" src="../poster_figures_2026-11/fig7_storage_year_V1.svg" width="1000" alt="One storage year, variant V1: gas pressures and dilatancy utilisation of both caverns">
+          <figcaption>Fig. 7: FTK, one storage year without brine movement (variant V1, AP&nbsp;1.10). Input: DLR hydrogen storage
+            profile 2045, scaled to the two caverns. The gas pressures use the permitted range of 5–17&nbsp;MPa; η = highest
+            utilisation of the observed zones at the cavern wall.</figcaption>
         </figure>
         <ul>
-          <li><b class="k">Input:</b> DLR hydrogen storage profile 2045, scaled to the two caverns. Brine keeps the gas pressure
-            constant: K358 11.3&nbsp;MPa, K365 17.0&nbsp;MPa.</li>
-          <li>About <b class="k">48&nbsp;t of H<sub>2</sub></b> move from K365 to K358 and back; near the cavern wall η stays well
-            below 1 all year, without tension.</li>
+          <li><b class="k">Variant V1:</b> the gas itself is moved between the caverns, without brine. K358 runs between 5.5 and
+            16.0&nbsp;MPa, K365 between 5.5 and 16.95&nbsp;MPa.</li>
+          <li>In operation <b class="k">η stays below 1</b>, and there is no tension at the cavern wall.</li>
         </ul>
 
         <h2>Status and next steps</h2>
@@ -263,7 +264,6 @@ const C = { tuc: '#008C4F', g50: '#808080', ink: '#1A1A1A', cap: '#4D4D4D', grid
 // text; o.halo draws a white outline so labels stay readable where they cross curves
 const T = (x, y, s, o = {}) => `<text x="${x}" y="${y}" font-size="${o.fs || 22}" fill="${o.c || C.ink}"${o.a ? ` text-anchor="${o.a}"` : ''}${o.w ? ` font-weight="${o.w}"` : ''}${o.r ? ` transform="rotate(${o.r} ${x} ${y})"` : ''}${o.halo ? ' stroke="#fff" stroke-width="6" stroke-linejoin="round" paint-order="stroke"' : ''}>${s}</text>`;
 const L = (x1, y1, x2, y2, c, w = 2, d = '') => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${c}" stroke-width="${w}"${d ? ` stroke-dasharray="${d}"` : ''}/>`;
-const poly = (xs, ys, fx, fy, c, w, d = '') => `<polyline fill="none" stroke="${c}" stroke-width="${w}" stroke-linejoin="round"${d ? ` stroke-dasharray="${d}"` : ''} points="${xs.map((x, i) => ys[i] === null ? '' : fx(x).toFixed(1) + ',' + fy(ys[i]).toFixed(1)).join(' ')}"/>`;
 // white rounded label box (image units) covering a baked-in label, with new text
 const chip = (x, y, w, h, lines, fs, o = {}) => {
   let s = `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.rx ?? 10}" fill="${o.bg || '#FDFDFD'}"${o.op ? ` fill-opacity="${o.op}"` : ''}/>`;
@@ -354,95 +354,7 @@ const chip = (x, y, w, h, lines, fs, o = {}) => {
                             + chip(1300 - 8 - 190, 8, 190, 82, ['K365'], 58, { a: 'middle', w: 700, rx: 8, op: .95 });
 })();
 
-// ------------------------------------------------------------------ data charts (need T27, TB4P, YEAR from ../index.html)
-function charts() {
-  if (!window.T27 || !window.TB4P || !window.YEAR) {
-    ['#t27', '#tb4', '#year'].forEach(id => $(id).innerHTML = T(20, 60, 'data missing: render with node poster/build.cjs', { fs: 26, c: C.red }));
-    return;
-  }
-  // ---------------- Fig. 6a: TB4 gas pressures
-  {
-    const D = TB4P, tmax = D.t[D.t.length - 1], P1 = 15.8, P2 = 25.9;
-    const X0 = 70, X1 = 508, Y0 = 250, Y1 = 12, sx = t => X0 + (X1 - X0) * t / tmax, sy = p => Y0 - (Y0 - Y1) * (p - 12.6) / 4.7;
-    let s = `<rect x="${X0}" y="${Y1}" width="${sx(P1) - X0}" height="${Y0 - Y1}" fill="#F2F2F2"/>
-             <rect x="${sx(P2)}" y="${Y1}" width="${X1 - sx(P2)}" height="${Y0 - Y1}" fill="#F2F2F2"/>`;
-    [13, 14, 15, 16, 17].forEach(p => s += L(X0, sy(p), X1, sy(p), C.grid, 1.5) + T(X0 - 10, sy(p) + 7, p, { fs: 21, a: 'end', c: C.cap }));
-    [0, 5, 10, 15, 20, 25].forEach(t => s += T(sx(t), Y0 + 26, t, { fs: 21, a: 'middle', c: C.cap }));
-    s += L(X0, Y0, X1, Y0, C.axis, 2) + L(X0, Y0, X0, Y1, C.axis, 2);
-    s += T(sx(P1 / 2), sy(17.0), 'brine into K358', { fs: 19, a: 'middle', c: C.cap }) + T(sx((P1 + P2) / 2), sy(17.0), 'standstill', { fs: 19, a: 'middle', c: C.cap })
-       + T(X1 - 3, sy(17.0), 'H₂', { fs: 17, a: 'end', c: C.cap }) + T(X1 - 3, sy(17.0) + 19, 'overflow', { fs: 17, a: 'end', c: C.cap });
-    s += poly(D.t, D.K358, sx, sy, C.k358, 4) + poly(D.t, D.K365, sx, sy, C.k365, 4);
-    s += T(sx(0.8), sy(16.25), 'K358', { fs: 21, w: 700, c: C.k358 }) + T(sx(0.8), sy(16.25) + 24, '(brine in, H₂ out)', { fs: 20, c: C.k358 })
-       + T(sx(1.5), sy(12.95), 'K365 (H₂ in)', { fs: 21, w: 700, c: C.k365 });
-    s += T(X0 + (X1 - X0) / 2, Y0 + 56, 'Time since start of TB4 [h]', { fs: 22, a: 'middle' }) + T(20, (Y0 + Y1) / 2, 'Gas pressure [MPa]', { fs: 22, a: 'middle', r: -90 });
-    $('#tb4').innerHTML = s;
-  }
-  // ---------------- Fig. 4: lab test No. 27, (a) full test and (b) last 30 hours
-  {
-    const D = T27, tEnd = D.t[D.t.length - 1];
-    const yA0 = 236, yA1 = 12, yB0 = 382, yB1 = 274, sv = v => yB0 - (yB0 - yB1) * (v + 100) / 900;   // gas at outlet [ml]
-    // (a) full test
-    const X0 = 92, X1 = 640, sx = t => X0 + (X1 - X0) * t / 17.2, sy = p => yA0 - (yA0 - yA1) * p / 23;
-    // (b) last 30 hours, pressure axis 19–21.5 MPa
-    const Z0 = 742, Z1 = 990, tz0 = 15.85, tz1 = 17.1, zx = t => Z0 + (Z1 - Z0) * (t - tz0) / (tz1 - tz0), zy = p => yA0 - (yA0 - yA1) * (p - 19) / 2.5;
-    const iz = D.t.findIndex(t => t >= tz0), cut = A => A.slice(iz), tZ = cut(D.t);
-    const tStep = D.t[D.p_gas.findIndex(p => p > 20)];   // 19.5 → 20.2 MPa
-    let s = `<defs><clipPath id="zclip"><rect x="${Z0}" y="${yA1}" width="${Z1 - Z0}" height="${yA0 - yA1}"/></clipPath></defs>`;
-    [0, 5, 10, 15, 20].forEach(p => s += L(X0, sy(p), X1, sy(p), C.grid, 1.5) + T(X0 - 10, sy(p) + 7, p, { fs: 21, a: 'end', c: C.cap }));
-    [19, 20, 21].forEach(p => s += L(Z0, zy(p), Z1, zy(p), C.grid, 1.5) + T(Z0 - 10, zy(p) + 7, p, { fs: 21, a: 'end', c: C.cap }));
-    [0, 400, 800].forEach(v => s += L(X0, sv(v), X1, sv(v), C.grid, 1.5) + T(X0 - 10, sv(v) + 7, v, { fs: 21, a: 'end', c: C.cap })
-                                 + L(Z0, sv(v), Z1, sv(v), C.grid, 1.5) + T(Z0 - 10, sv(v) + 7, v, { fs: 21, a: 'end', c: C.cap }));
-    [[X0, X1], [Z0, Z1]].forEach(([a, b]) => s += L(a, yA0, b, yA0, C.axis, 2) + L(a, yA0, a, yA1, C.axis, 2) + L(a, yB0, b, yB0, C.axis, 2) + L(a, yB0, a, yB1 - 6, C.axis, 2));
-    [0, 4, 8, 12, 16].forEach(d => s += T(sx(d), yB0 + 27, d, { fs: 21, a: 'middle', c: C.cap }));
-    [16, 16.5, 17].forEach(d => s += T(zx(d), yB0 + 27, d.toFixed(1), { fs: 21, a: 'middle', c: C.cap }));
-    // zoom window marked in (a)
-    s += `<rect x="${sx(tz0)}" y="${yA1}" width="${X1 - sx(tz0)}" height="${yB0 - yA1}" fill="none" stroke="${C.g50}" stroke-width="1.5" stroke-dasharray="5 4"/>`;
-    s += poly(D.t, D.s1, sx, sy, C.s1, 2.5, '9 5') + poly(D.t, D.s3, sx, sy, C.s1, 3) + poly(D.t, D.p_gas, sx, sy, C.he, 4)
-       + poly(D.t, D.p_out, sx, sy, C.out, 3) + poly(D.t, D.v_out, sx, sv, C.out, 3);
-    s += '<g clip-path="url(#zclip)">' + poly(tZ, cut(D.s1), zx, zy, C.s1, 2.5, '9 5') + poly(tZ, cut(D.s3), zx, zy, C.s1, 3)
-       + poly(tZ, cut(D.p_gas), zx, zy, C.he, 4) + '</g>' + poly(tZ, cut(D.v_out), zx, sv, C.out, 3) + L(zx(tStep), yA1, zx(tStep), yB0, C.g50, 1.5, '4 4');
-    s += T(X0 + 10, sy(21) - 9, 'axial stress σ₁ = 21 MPa', { fs: 20, c: C.cap })
-       + T(X0 + 10, sy(20) + 26, 'confining stress σ₃ = 20 MPa', { fs: 20, w: 700, c: C.cap })
-       + T(sx(7.2), sy(8.4), 'helium pressure, inlet side:', { fs: 20, w: 700, c: C.he }) + T(sx(7.2), sy(8.4) + 24, 'raised in steps up to 20.2 MPa', { fs: 20, w: 700, c: C.he })
-       + T(sx(4.6), sy(0.2) - 10, 'outlet side: held at 0.2 MPa', { fs: 20, w: 700, c: C.out })
-       + T(sx(0.4), sv(60) - 14, 'gas at the outlet: none up to 19.5 MPa', { fs: 20, w: 700, c: C.out })
-       + T(sx(tz0) - 8, sv(560), 'breakthrough', { fs: 20, w: 700, a: 'end', c: C.red }) + T(sx(tz0) - 8, sv(560) + 23, 'at 20.2 MPa', { fs: 20, w: 700, a: 'end', c: C.red });
-    s += T(Z0 + 8, zy(21) - 8, 'σ₁', { fs: 19, c: C.cap }) + T(Z0 + 8, zy(20) + 22, 'σ₃', { fs: 19, w: 700, c: C.cap })
-       + T(zx(15.97) + 6, zy(19.5) + 28, '19.5 MPa: tight', { fs: 19, w: 700, c: C.he })
-       + T(zx(tStep) - 6, zy(20.2) - 12, '20.2 MPa > σ₃', { fs: 19, w: 700, a: 'end', c: C.he, halo: 1 })
-       + T(zx(tStep) - 8, sv(470), 'gas ≈ 1 h', { fs: 19, w: 700, a: 'end', c: C.red }) + T(zx(tStep) - 8, sv(470) + 22, 'after the step', { fs: 19, w: 700, a: 'end', c: C.red });
-    s += T(X0 + (X1 - X0) / 2, yB0 + 56, 'Time since test start [d]', { fs: 22, a: 'middle' }) + T(Z0 + (Z1 - Z0) / 2, yB0 + 56, 'Time [d]', { fs: 22, a: 'middle' })
-       + T(20, (yA0 + yA1) / 2, 'Stress, pressure [MPa]', { fs: 22, a: 'middle', r: -90 }) + T(20, (yB0 + yB1) / 2 - 3, 'Gas [ml]', { fs: 22, a: 'middle', r: -90 });
-    s += `<text x="${X0 + (X1 - X0) / 2}" y="470" font-size="25" text-anchor="middle" font-family="Caladea, Cambria, Georgia, serif" fill="${C.ink}">(a)</text>`
-       + `<text x="${Z0 + (Z1 - Z0) / 2}" y="470" font-size="25" text-anchor="middle" font-family="Caladea, Cambria, Georgia, serif" fill="${C.ink}">(b)</text>`;
-    $('#t27').innerHTML = s;
-  }
-  // ---------------- Fig. 7: one storage year
-  {
-    const D = YEAR, X0 = 92, X1 = 990, sx = d => X0 + (X1 - X0) * d / 365;
-    const yA0 = 200, yA1 = 14, ym = v => yA0 - (yA0 - yA1) * v / 100;       // hydrogen [t]
-    const yB0 = 380, yB1 = 236, ye = v => yB0 - (yB0 - yB1) * v / 1.1;      // eta
-    const MON = ['Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar'], MS = [0,30,61,91,122,153,183,214,244,275,306,334];
-    let s = '';
-    MS.forEach((m, k) => s += L(sx(m), yA1, sx(m), yB0, '#F0F0F0', 1.5) + T(sx(m + 15), yB0 + 27, MON[k], { fs: 20, a: 'middle', c: C.cap }));
-    [0, 25, 50, 75, 100].forEach(v => s += L(X0, ym(v), X1, ym(v), C.grid, 1.5) + T(X0 - 10, ym(v) + 7, v, { fs: 21, a: 'end', c: C.cap }));
-    [0, 0.5, 1].forEach(v => s += L(X0, ye(v), X1, ye(v), C.grid, 1.5) + T(X0 - 10, ye(v) + 7, v.toFixed(1), { fs: 21, a: 'end', c: C.cap }));
-    s += L(X0, yA0, X1, yA0, C.axis, 2) + L(X0, yA0, X0, yA1, C.axis, 2) + L(X0, yB0, X1, yB0, C.axis, 2) + L(X0, yB0, X0, yB1 - 4, C.axis, 2);
-    s += L(X0, ym(90), X1, ym(90), C.g50, 2, '8 6') + T(X0 + 10, ym(90) - 9, 'both caverns together: about 90 t', { fs: 19, c: C.cap });
-    s += poly(D.day, D.m358, sx, ym, C.k358, 3.5) + poly(D.day, D.m365, sx, ym, C.k365, 3.5);
-    s += T(sx(40), ym(66), 'K358 is filled', { fs: 21, w: 700, c: C.k358, halo: 1 }) + T(sx(150), ym(19), 'K365 is emptied', { fs: 21, w: 700, c: C.k365, halo: 1 })
-       + T(sx(328), ym(17), 'and back', { fs: 20, a: 'middle', c: C.cap }) + T(sx(328), ym(17) + 22, 'in winter', { fs: 20, a: 'middle', c: C.cap });
-    s += `<rect x="${X0}" y="${ye(1.1)}" width="${X1 - X0}" height="${ye(1) - ye(1.1)}" fill="#F6E3DE"/>` + L(X0, ye(1), X1, ye(1), C.red, 3)
-       + T(X0 + 10, ye(1) - 7, 'dilatancy limit η = 1', { fs: 19, w: 700, c: C.red });
-    s += poly(D.day, D.e358, sx, ye, C.k358, 3) + poly(D.day, D.e365, sx, ye, C.k365, 3);
-    s += T(sx(4), ye(0.80), 'start reaction of the model', { fs: 18, c: C.cap })
-       + T(X1 - 4, ye(0.82), 'K365 Aug–Nov: small gas space,', { fs: 18, a: 'end', c: C.k365 }) + T(X1 - 4, ye(0.82) + 20, 'numerically unsteady (upper estimate)', { fs: 18, a: 'end', c: C.k365 });
-    s += T(X0 + (X1 - X0) / 2, yB0 + 56, 'Simulated storage year, 1 April to 31 March', { fs: 22, a: 'middle' })
-       + T(20, (yA0 + yA1) / 2, 'Hydrogen [t]', { fs: 22, a: 'middle', r: -90 }) + T(20, (yB0 + yB1) / 2, 'Utilisation η', { fs: 22, a: 'middle', r: -90 });
-    $('#year').innerHTML = s;
-  }
-}
-charts();
+// Fig. 4, 6a and 7 are the figure files in ../poster_figures_2026-11/ (SVG, drawn at their printed size)
 
 // ------------------------------------------------------------------ partner logos (svg, then png, else the name as text)
 window.partnersReady = Promise.all([...document.querySelectorAll('#partners [data-key]')].map(slot => new Promise(done => {
