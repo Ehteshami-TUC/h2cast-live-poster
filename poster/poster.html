@@ -22,7 +22,7 @@
     --sans: "Liberation Sans", Arial, Helvetica, sans-serif;
     --title: "DejaVu Sans", Verdana, Tahoma, sans-serif;
   }
-  @page { size: 2400px 3393px; margin: 0; }
+  /* no @page size here: build.cjs sets the A0 paper size and scale for the PDF */
   * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   html, body { margin: 0; padding: 0; background: #fff; }
   #poster { position: relative; width: 2400px; height: 3393px; overflow: hidden; background: #fff; color: var(--ink);
