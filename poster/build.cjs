@@ -63,6 +63,9 @@ if (pdfOut && (checkOnly || preview)) usage('--pdf cannot be combined with --che
       const over = c.scrollHeight - c.clientHeight, w = c.getBoundingClientRect().width;
       if (over > 1) problems.push(`${c.id}: column OVERFLOWS by ${over} px`); else info.push(`${c.id}: spare ${Math.round(spare)} px`);
       if (Math.abs(w - 1000) > 0.5) problems.push(`${c.id}: column is ${w.toFixed(1)} px wide instead of 1000 px`);
+      for (const e of c.querySelectorAll('p, li, h2, figcaption'))   // text running past the column edge (e.g. a nowrap line)
+        if (e.scrollWidth > e.clientWidth + 1)
+          problems.push(`${c.id}: ${e.tagName.toLowerCase()} "${e.textContent.trim().slice(0, 40)}…" is ${e.scrollWidth - e.clientWidth} px too wide`);
     }
     for (const i of document.images) if (!i.naturalWidth) problems.push('image not loaded: ' + i.getAttribute('src'));
     const P = document.querySelector('#poster').getBoundingClientRect();

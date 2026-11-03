@@ -21,7 +21,10 @@ npm run poster:pdf                               # also poster.pdf for printing:
 
 Without Node.js or the fonts on your own computer: push a branch. The workflow `.github/workflows/render-poster.yml`
 renders the poster in the cloud with the right fonts, commits `poster.jpg`, the clickable areas and new figure copies to
-that branch, and provides the A0 print PDF as a download (Actions → the run → Artifacts → `poster-A0-print`).
+that branch, and provides the A0 print PDF as a download (Actions → the run → Artifacts → `poster-A0-print`). It runs
+for pushes to a branch other than main that change `poster/`, the figure SVGs, `img/` or `package.json`, or by hand
+(Actions tab; on main it only renders and uploads, it never commits). It adds a commit to your branch, so run `git pull`
+before you push again.
 
 `node poster/build.cjs` takes the same options directly: `--pdf out.pdf`, `--check` (layout check only, exit code 1 on
 problems), `--preview out.jpg` (render without touching the repo) and `--force` (write despite layout problems; by default
@@ -35,4 +38,5 @@ Logos: TU Clausthal (`img/logo_tuc.svg`), BMWE funding logo (`img/logo_bmwe.svg`
 Fig. 4, Fig. 6a and Fig. 7 are the figure files in `poster_figures_2026-11/` (November 2026; SVG, PNG and PDF at their
 printed size, see the README there). `poster/poster.html` shows the SVGs; to change a figure, replace its file and run
 `npm run poster`. The pop-ups of the live page use the same data: `T27` (test No. 27), and `TB4P` and `YEAR` (variant V1),
-which were read from the SVG curves of Fig. 6a and Fig. 7.
+which were read from the SVG curves of Fig. 6a and Fig. 7 (YEAR: the first days of η from the FTK history data, because
+Fig. 7 cuts the initial transient off).
