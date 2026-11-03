@@ -72,5 +72,10 @@ jobs:
           if git diff --cached --quiet; then echo "Nothing changed."; exit 0; fi
           git commit -m "Render poster.jpg, clickable areas and figure copies (CI)" \
                      -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
-          git pull --rebase --autostash origin "$GITHUB_REF_NAME"
+          # newer commits on the branch: rebase onto them, unless they changed the poster sources (then their own run renders)
+          git fetch origin "$GITHUB_REF_NAME"
+          if ! git diff --quiet "$GITHUB_SHA" FETCH_HEAD -- poster package.json 'poster_figures_2026-11/*.svg' img ':(exclude)img/ftk_scheme.png'; then
+            echo "Newer poster sources on the branch; their own run renders them."; exit 0
+          fi
+          git rebase FETCH_HEAD
           git push origin "HEAD:${GITHUB_REF_NAME}"

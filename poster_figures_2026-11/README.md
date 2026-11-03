@@ -73,7 +73,7 @@ metric-compatible equivalents of Arial and Cambria).
 
 ## Text correction (3 November 2026)
 
-- `fig4_test27`: the label "helium passes at 20.2 MPa" now reads "helium at the outlet at 20.2 MPa", because the flow path
-  of the helium is not known.
+- `fig4_test27`: the label at 20.2 MPa now reads "helium at the outlet at 20.2 MPa", because the flow path of the
+  helium is not known.
 
 If the figures are generated again from their script, use these labels there as well.
