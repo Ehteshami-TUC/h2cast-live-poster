@@ -1,0 +1,71 @@
+# Renders the poster in the cloud with the poster fonts (Caladea, DejaVu Sans, Liberation Sans), so no local Node.js,
+# Playwright or fonts are needed:
+#   - poster/poster.html -> poster.jpg, img/ftk_scheme.png and the clickable areas in index.html (committed to the branch)
+#   - PNG and PDF copies of every figure SVG that is newer than its PNG (committed to the branch)
+#   - the A0 print PDF poster.pdf (not committed: download it from the run's artifacts)
+# Runs on every push to a branch other than main that changes the poster or its figures, or by hand (Actions tab).
+# The build stops without writing anything if a column overflows or an image is missing.
+name: Render poster
+
+on:
+  push:
+    branches-ignore: [main]
+    paths:
+      - 'poster/**'
+      - 'poster_figures_2026-11/*.svg'
+      - 'img/**'
+      - 'package.json'
+      - '.github/workflows/render-poster.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: render-poster-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Poster fonts
+        run: sudo apt-get update -q && sudo apt-get install -y -q fonts-crosextra-caladea fonts-dejavu-core fonts-liberation
+      - name: Playwright
+        run: npm install --no-audit --no-fund && npx playwright install --with-deps chromium
+      - name: Figure copies (PNG, PDF) for SVGs newer than their PNG
+        run: |
+          names=""
+          for svg in poster_figures_2026-11/*.svg; do
+            n=$(basename "$svg" .svg)
+            ts=$(git log -1 --format=%ct -- "$svg")
+            tp=$(git log -1 --format=%ct -- "poster_figures_2026-11/$n.png")
+            if [ "${ts:-0}" -gt "${tp:-0}" ]; then names="$names $n"; fi
+          done
+          echo "figures to export:${names:- none}"
+          if [ -n "$names" ]; then node poster/export_figures.cjs $names; fi
+      - name: Poster and A0 print PDF
+        run: node poster/build.cjs --pdf poster.pdf
+      - uses: actions/upload-artifact@v4
+        with:
+          name: poster-A0-print
+          path: |
+            poster.pdf
+            poster.jpg
+          retention-days: 30
+          if-no-files-found: error
+      - name: Commit the rendered files to the branch
+        run: |
+          git config user.name "Ehteshami-TUC"
+          git config user.email "344774319+Ehteshami-TUC@users.noreply.github.com"
+          git add poster.jpg index.html img/ftk_scheme.png poster_figures_2026-11
+          if git diff --cached --quiet; then echo "Nothing changed."; exit 0; fi
+          git commit -m "Render poster.jpg, clickable areas and figure copies (CI)" \
+                     -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

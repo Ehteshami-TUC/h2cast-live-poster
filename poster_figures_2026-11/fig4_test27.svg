@@ -3435,7 +3435,7 @@ L 635.716535 377.456693
     <text style="font-weight: 700; font-size: 20px; font-family: 'Arial', 'DejaVu Sans'; text-anchor: start; fill: #1a1a1a" x="103.211536" y="323.784352" transform="rotate(-0 103.211536 323.784352)">no measurable gas passage up to 19.5 MPa</text>
    </g>
    <g id="text_20">
-    <text style="font-weight: 700; font-size: 20px; font-family: 'Arial', 'DejaVu Sans'; fill: #8c1c00" transform="translate(450.760949 281.523863)">helium passes</text>
+    <text style="font-weight: 700; font-size: 20px; font-family: 'Arial', 'DejaVu Sans'; fill: #8c1c00" transform="translate(405.267199 283.380113)">helium at the outlet</text>
     <text style="font-weight: 700; font-size: 20px; font-family: 'Arial', 'DejaVu Sans'; fill: #8c1c00" transform="translate(479.654699 304.990074)">at 20.2 MPa</text>
    </g>
   </g>

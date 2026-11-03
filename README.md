@@ -19,6 +19,10 @@ npm run poster                                   # poster.jpg, img/ftk_scheme.pn
 npm run poster:pdf                               # also poster.pdf for printing: A0 (841 × 1189 mm), vector text
 ```
 
+Without Node.js or the fonts on your own computer: push a branch. The workflow `.github/workflows/render-poster.yml`
+renders the poster in the cloud with the right fonts, commits `poster.jpg`, the clickable areas and new figure copies to
+that branch, and provides the A0 print PDF as a download (Actions → the run → Artifacts → `poster-A0-print`).
+
 `node poster/build.cjs` takes the same options directly: `--pdf out.pdf`, `--check` (layout check only, exit code 1 on
 problems), `--preview out.jpg` (render without touching the repo) and `--force` (write despite layout problems; by default
 nothing is written if a column overflows, an image is missing or a chart fails). The build also updates the clickable
