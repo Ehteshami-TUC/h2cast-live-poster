@@ -1,6 +1,6 @@
 # Poster figures – update November 2026
 
-New and corrected figures for the poster "How flexibly can hydrogen salt caverns be cycled?". Each figure is drawn at
+New and corrected figures for the poster "Flexible hydrogen storage in salt caverns – stable and tight?". Each figure is drawn at
 the size it has on the A0 poster (same width as the chart it replaces), with the poster colours (K358 blue, K365
 magenta) and fonts of about 20 pt. Every figure comes in three formats:
 
