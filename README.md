@@ -1,6 +1,6 @@
 # H2CAST live poster – TU Clausthal
 
-Interactive version of the poster "How flexibly can hydrogen salt caverns be cycled?" (TU Clausthal, Chair of
+Interactive version of the poster "Flexible hydrogen storage in salt caverns – stable and tight?" (TU Clausthal, Chair of
 Geomechanics and Multiphysics Systems), shown at the H2CAST Infomarkt, Etzel, 10 November 2026.
 
 Live page: https://ehteshami-tuc.github.io/h2cast-live-poster/
