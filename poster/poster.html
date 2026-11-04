@@ -5,7 +5,7 @@
 <title>H2CAST-Prove – Flexible hydrogen storage in salt caverns – stable and tight? (TU Clausthal)</title>
 <!--
   Source of ../poster.jpg. Render it with:  node poster/build.cjs
-  The build script injects the data (T27, TB4P, YEAR) from ../index.html, writes ../poster.jpg and
+  Fig. 4, 6a and 7 are the SVG files in ../poster_figures_2026-11/. The build script writes ../poster.jpg and
   updates the clickable areas (const HOT) in ../index.html from the elements marked with data-hot.
   Canvas: 2400 × 3393 px (A0 portrait, 1 : √2). Colours: TU Clausthal corporate design (green, grey 50 %, grey 10 %,
   red); the cavern colours K358 blue / K365 magenta match the pop-up charts of the live page.
@@ -77,7 +77,7 @@
   .ov svg { position: absolute; inset: 0; width: 100%; height: 100%; }
   svg text { font-family: var(--sans); }
 
-  p.key { font-size: 30px; text-align: left; margin: 4px 0 10px; white-space: nowrap; }
+  p.key { font-size: 28px; text-align: left; margin: 4px 0 10px; white-space: nowrap; }
   p.key b { color: var(--tuc); }
 
   .side { display: flex; gap: 30px; align-items: center; }
@@ -167,7 +167,7 @@
             (a)&nbsp;Full test, (b)&nbsp;last 30&nbsp;hours. Gas at the outlet: outlet-pump volume, not yet calibrated.</figcaption>
         </figure>
         <ul>
-          <li><b class="k">Test No. 27:</b> tight up to 19.5&nbsp;MPa; gas passed at 20.2&nbsp;MPa, just above the confining stress σ<sub>3</sub> – consistent
+          <li><b class="k">Test No. 27:</b> tight up to 19.5&nbsp;MPa; helium at the outlet at 20.2&nbsp;MPa, just above the confining stress σ<sub>3</sub> – consistent
             with the infiltration criterion of the model.</li>
           <li><b class="k">Permeability:</b> evaluation in progress (calibration of the gas pumps).</li>
         </ul>
@@ -189,10 +189,10 @@
         <ul>
           <li><b class="k">TB1, TB2 – counter-phase gas cycling:</b> dilatancy utilisation factor η &lt; 1 everywhere over 10 cycles, no dilatant damage.</li>
           <li><b class="k">TB3 – full gas pressure range 5–17&nbsp;MPa:</b> utilisation factor η reaches 1 only locally at the cavern wall at minimum
-            gas pressure and does not spread over 10 cycles.</li>
-          <li><b class="k">TB4 – brine-driven overflow:</b> utilisation factor η ≤ 0.6, no tension; the gas temperature changes by only about 7&nbsp;K.</li>
+            gas pressure and does not spread over 10 cycles; the surrounding salt stays below the limit.</li>
+          <li><b class="k">TB4 – brine-driven overflow:</b> utilisation factor η ≤ 0.6, no tension; during the overflow the gas temperature changes by only about 6–7&nbsp;K.</li>
         </ul>
-        <p class="key"><b>Key message:</b> all four test scenarios can be run – TB3 within the 17&nbsp;MPa limit.</p>
+        <p class="key"><b>Key message:</b> all four test scenarios can be run – TB3 if the 17&nbsp;MPa maximum is kept.</p>
         <figure>
           <div class="row">
             <div class="sub" data-hot="tb4" data-label="TB4: step through the overflow test">
@@ -229,13 +229,13 @@
 
         <h2>Status and next steps</h2>
         <ul class="status" data-hot="workmap" data-label="Our work packages and next steps">
-          <li><span class="chip c-done">done</span>Test scenarios TB1–TB4 (AP&nbsp;1.4), effect of the cavern conversion (AP&nbsp;2.1),
-            Dü22 rig (AP&nbsp;2.4), salt and cement specimens (AP&nbsp;2.5).</li>
-          <li><span class="chip c-prog">in progress</span>One storage year (AP&nbsp;1.9, 1.10), convergence and surface subsidence
-            (AP&nbsp;2.9), helium tightness tests (AP&nbsp;2.3).</li>
-          <li><span class="chip c-next">next</span>Multi-cycle test operation at Etzel, then comparison of measured and predicted data
-            (AP&nbsp;1.6, 1.7); test series at the operating limits (AP&nbsp;1.8); integrity under multi-cycle operation (AP&nbsp;2.2) and
-            long-term loads (AP&nbsp;2.6); cyclic load tests (AP&nbsp;2.7).</li>
+          <li><span class="chip c-done">done</span>Test scenarios TB1–TB4 (AP&nbsp;1.4), rate of pressure change (AP&nbsp;1.9),
+            salt and cement specimens (AP&nbsp;2.5).</li>
+          <li><span class="chip c-prog">in progress</span>One storage year (AP&nbsp;1.10), calibration of the Dü22 rig (AP&nbsp;2.4),
+            helium tightness tests (AP&nbsp;2.3), convergence and surface subsidence (AP&nbsp;2.9).</li>
+          <li><span class="chip c-next">next</span>Multi-cycle test operation at Etzel, then measured vs. predicted data
+            (AP&nbsp;1.6, 1.7); test series at the operating limits (AP&nbsp;1.8); conversion effects (AP&nbsp;2.1),
+            multi-cycle integrity (AP&nbsp;2.2), long-term loads (AP&nbsp;2.6); cyclic load tests (AP&nbsp;2.7).</li>
         </ul>
         <div class="fill"></div>
       </div>
@@ -317,7 +317,7 @@ const chip = (x, y, w, h, lines, fs, o = {}) => {
   s += chip(12, 842, 214, 86, ['H₂ gas'], F);
   s += chip(12, 1024, 170, 88, ['Brine'], F);
   s += chip(12, 1274, 248, 64, ['Axis'], F);
-  s += chip(872, 1390, 426, 140, ['Full domain,', 'r ≈ 250 m'], F);
+  s += chip(872, 1390, 426, 140, ['Full domain'], F);
   $('#m3d svg').innerHTML = s;
 })();
 

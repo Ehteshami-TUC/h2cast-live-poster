@@ -1,0 +1,81 @@
+# Renders the poster in the cloud with the poster fonts (Caladea, DejaVu Sans, Liberation Sans), so no local Node.js,
+# Playwright or fonts are needed:
+#   - poster/poster.html -> poster.jpg, img/ftk_scheme.png and the clickable areas in index.html (committed to the branch)
+#   - PNG and PDF copies of every figure SVG changed after its PNG (committed to the branch)
+#   - the A0 print PDF poster.pdf (not committed: download it from the run's artifacts)
+# Runs on every push to a branch other than main that changes the poster or its figures, or by hand (Actions tab).
+# On main it only renders and uploads; it never commits there, because main is the live page.
+# The build stops without writing anything if a column overflows, a line runs past a column edge or an image is missing.
+# The job adds a commit to the branch: run git pull before pushing again.
+name: Render poster
+
+on:
+  push:
+    branches-ignore: [main]
+    paths:
+      - 'poster/**'
+      - 'poster_figures_2026-11/*.svg'
+      - 'img/**'
+      - 'package.json'
+      - '.github/workflows/render-poster.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: render-poster-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Poster fonts
+        run: sudo apt-get update -q && sudo apt-get install -y -q fonts-crosextra-caladea fonts-dejavu-core fonts-liberation
+      - name: Playwright
+        run: npm install --no-audit --no-fund && npx playwright install --with-deps chromium
+      - name: Figure copies (PNG, PDF) for SVGs changed after their PNG
+        run: |
+          names=""
+          for svg in poster_figures_2026-11/*.svg; do
+            n=$(basename "$svg" .svg)
+            cs=$(git log -1 --format=%H -- "$svg")
+            cp=$(git log -1 --format=%H -- "poster_figures_2026-11/$n.png")
+            # export unless the PNG's last commit already contains the SVG's last commit (no clock comparison)
+            if [ -z "$cp" ] || ! git merge-base --is-ancestor "$cs" "$cp"; then names="$names $n"; fi
+          done
+          echo "figures to export:${names:- none}"
+          if [ -n "$names" ]; then node poster/export_figures.cjs $names; fi
+      - name: Poster and A0 print PDF
+        run: node poster/build.cjs --pdf poster.pdf
+      - uses: actions/upload-artifact@v4
+        with:
+          name: poster-A0-print
+          path: |
+            poster.pdf
+            poster.jpg
+          retention-days: 30
+          if-no-files-found: error
+      - name: Commit the rendered files to the branch
+        if: github.ref_name != 'main'
+        run: |
+          git config user.name "Ehteshami-TUC"
+          git config user.email "344774319+Ehteshami-TUC@users.noreply.github.com"
+          git add poster.jpg index.html img/ftk_scheme.png poster_figures_2026-11
+          if git diff --cached --quiet; then echo "Nothing changed."; exit 0; fi
+          git commit -m "Render poster.jpg, clickable areas and figure copies (CI)" \
+                     -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+          # newer commits on the branch: rebase onto them, unless they changed the poster sources (then their own run renders)
+          git fetch origin "$GITHUB_REF_NAME"
+          if ! git diff --quiet "$GITHUB_SHA" FETCH_HEAD -- poster package.json 'poster_figures_2026-11/*.svg' img ':(exclude)img/ftk_scheme.png'; then
+            echo "Newer poster sources on the branch; their own run renders them."; exit 0
+          fi
+          git rebase FETCH_HEAD
+          git push origin "HEAD:${GITHUB_REF_NAME}"
