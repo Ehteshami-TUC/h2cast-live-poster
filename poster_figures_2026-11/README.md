@@ -20,7 +20,7 @@ Simulation and laboratory results are preliminary.
 ## What changed
 
 **Fig. 4 – test No. 27**
-- The gas axis says "uncalibrated", because the outlet-pump volume is not yet calibrated.
+- The gas at the outlet is shown on a relative scale (0 = no gas, 1 = end of the test).
 - New wording: "no measurable gas passage up to 19.5 MPa" and "helium at the outlet at 20.2 MPa".
 - The stress lines σ₁ and σ₃ are now light grey, so colour-blind readers can tell them apart from the green helium
   curve.
@@ -52,7 +52,7 @@ Simulation and laboratory results are preliminary.
 
 - **Fig. 4:** Test No. 27, cement specimen (Ø 88 × 180 mm, 30 °C), helium instead of hydrogen for safety.
   - (a) Full test, (b) last 30 hours.
-  - Gas at the outlet: outlet-pump volume, not yet calibrated.
+  - Outlet gas on a relative scale (1 = end of the test).
 - **Fig. 6a:** Gas pressures at the wellhead (FTK).
   - Brine raises the pressure in K358 (15 h).
   - After a 9 h standstill, H₂ flows over to K365 without a compressor (4 h).
@@ -77,3 +77,8 @@ metric-compatible equivalents of Arial and Cambria).
   helium is not known.
 
 If the figures are generated again from their script, use these labels there as well.
+
+## Update (6 November 2026)
+
+- `fig4_test27`: the lower panels show the gas at the outlet on a relative scale, "Outlet gas, relative [–]"
+  (1 = end of the test). The curves and all other labels are unchanged.
