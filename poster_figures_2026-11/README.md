@@ -56,7 +56,7 @@ Simulation and laboratory results are preliminary.
 - **Fig. 6a:** Gas pressures at the wellhead (FTK).
   - Brine raises the pressure in K358 (15 h).
   - After a 9 h standstill, H₂ flows over to K365 without a compressor (4 h).
-- **Fig. 7:** FTK, one storage year without brine movement (variant V1, AP 1.10).
+- **Fig. 7:** FTK, one storage year without brine movement (variant V1).
   - Input: DLR hydrogen storage profile 2045, scaled to the two caverns.
   - The gas pressures use the permitted range of 5–17 MPa.
   - η = highest utilisation of the observed zones at the cavern wall.

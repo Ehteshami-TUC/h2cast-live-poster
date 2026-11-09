@@ -129,8 +129,9 @@
         <h2>The simulation model</h2>
         <figure data-hot="ftk" data-label="How FTK couples mechanics and flow">
           <svg id="ftk" width="1000" height="340" viewBox="0 0 1000 340" role="img" aria-label="FTK coupling scheme"></svg>
-          <figcaption>Fig. 1: FTK, TU Clausthal’s coupling of FLAC3D and TOUGH3. In every time interval Δt the three models run in the
-            order 1, 2, 3; the quantities sent back act in the next interval, and Δt adapts automatically.</figcaption>
+          <figcaption>Fig. 1: FTK – the FLAC3D–TOUGH coupling simulator developed at TU Clausthal, following the <span class="nb">TOUGH-FLAC</span> approach
+            of Lawrence Berkeley National Laboratory. In every time interval Δt the three models run in the order 1, 2, 3; the
+            quantities sent back act in the next interval.</figcaption>
         </figure>
         <div class="side">
           <div class="txt">
@@ -138,13 +139,13 @@
               <li><b class="k">Both caverns</b> are modelled as separate 11.25° segments, built from the 2023 sonar survey,
                 with the leaching history since 2011.</li>
               <li><b class="k">Criteria:</b> dilatancy utilisation factor η &lt; 1 and no tension at the wall. H<sub>2</sub> enters the
-                salt only where the salt dilates (porosity φ and permeability k rise) or where the gas pressure reaches the
-                minimum principal stress σ<sub>min</sub>.</li>
+                salt only where it dilates (porosity φ and permeability k rise) or where the gas pressure reaches the
+                least compressive principal stress σ<sub>3</sub>.</li>
               <li><b class="k">Mesh:</b> refined towards the cavern wall, where creep and possible damage are evaluated.</li>
             </ul>
           </div>
           <div class="ov" id="m3d" data-hot="model" data-label="How the simulation model is built"
-               style="width:410px;aspect-ratio:1300/1600"><img src="../img/model_3d.jpg" alt=""><svg viewBox="0 0 1300 1600"></svg></div>
+               style="width:392px;aspect-ratio:1300/1600"><img src="../img/model_3d.jpg" alt=""><svg viewBox="0 0 1300 1600"></svg></div>
         </div>
         <figcaption>Fig. 2: Computed segments of rock salt, caprock and overburden; the overburden above the model top acts as a
           surcharge load. Cavern bodies are shown revolved.</figcaption>
@@ -177,7 +178,7 @@
       <!-- ============================== right column ============================== -->
       <div class="col" id="colR">
         <h2>Results: are the planned test scenarios safe?</h2>
-        <p>Predictive FTK simulations of the four planned test runs TB1–TB4 (work package AP&nbsp;1.4): TB1–TB3 gas-rate-driven,
+        <p>Predictive FTK simulations of the four planned test runs TB1–TB4: TB1–TB3 gas-rate-driven,
           TB4 brine-driven.</p>
         <figure data-hot="scenarios" data-label="Compare the four test scenarios">
           <div class="row" id="etaRow" style="align-items:center">
@@ -217,7 +218,7 @@
         <h2>One storage year</h2>
         <figure data-hot="year" data-label="One storage year: move through the year">
           <img class="fig" src="../poster_figures_2026-11/fig7_storage_year_V1.svg" width="1000" alt="One storage year, variant V1: gas pressures and dilatancy utilisation factor η of both caverns">
-          <figcaption>Fig. 7: FTK, one storage year without brine movement (variant V1, AP&nbsp;1.10). Input: DLR hydrogen storage
+          <figcaption>Fig. 7: FTK, one storage year without brine movement (variant V1). Input: DLR hydrogen storage
             profile 2045, scaled to the two caverns. The gas pressures vary within the permitted range of <span class="nb">5–17&nbsp;MPa</span>; dilatancy utilisation factor η = highest
             value in the observed zones at the cavern wall.</figcaption>
         </figure>
@@ -229,13 +230,11 @@
 
         <h2>Status and next steps</h2>
         <ul class="status" data-hot="workmap" data-label="Our work packages and next steps">
-          <li><span class="chip c-done">done</span>Test scenarios TB1–TB4 (AP&nbsp;1.4), rate of pressure change (AP&nbsp;1.9),
-            salt and cement specimens (AP&nbsp;2.5).</li>
-          <li><span class="chip c-prog">in progress</span>One storage year (AP&nbsp;1.10), calibration of the Dü22 rig (AP&nbsp;2.4),
-            helium tightness tests (AP&nbsp;2.3), convergence and surface subsidence (AP&nbsp;2.9).</li>
-          <li><span class="chip c-next">next</span>Multi-cycle test operation at Etzel, then measured vs. predicted data
-            (AP&nbsp;1.6, 1.7); test series at the operating limits (AP&nbsp;1.8); conversion effects (AP&nbsp;2.1),
-            multi-cycle integrity (AP&nbsp;2.2), long-term loads (AP&nbsp;2.6); cyclic load tests (AP&nbsp;2.7).</li>
+          <li><span class="chip c-done">done</span>Test scenarios TB1–TB4, rate of pressure change, salt and cement specimens.</li>
+          <li><span class="chip c-prog">in progress</span>One storage year, calibration of the Dü22 rig, helium tightness tests,
+            convergence and surface subsidence.</li>
+          <li><span class="chip c-next">next</span>Multi-cycle test operation at Etzel, then measured vs. predicted data; test series
+            at the operating limits; conversion effects, multi-cycle integrity and long-term loads; cyclic load tests.</li>
         </ul>
         <div class="fill"></div>
       </div>
@@ -277,7 +276,7 @@ const chip = (x, y, w, h, lines, fs, o = {}) => {
 (function ftk() {
   const B = [[0, '1', 'Cavern', C.g50, ['H₂ mass and energy', 'balance → pressure', 'and temperature', 'of the gas']],
              [370, '2', 'FLAC3D', C.tuc, ['rock-salt mechanics:', 'creep (temperature-', 'dependent), dilatancy,', 'damage, healing']],
-             [740, '3', 'TOUGH3', C.cap, ['two-phase flow of', 'H₂ and water,', 'and heat flow']]];
+             [740, '3', 'TOUGH3', C.cap, ['two-phase flow of', 'H₂ and brine,', 'and heat flow']]];
   const top = 62, hh = 54, bh = 200, w = 260;
   let s = `<defs>${[C.cap, C.tuc, C.cap, C.g50].map((c, i) => `<marker id="a${i}" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="${c}"/></marker>`).join('')}</defs>`;
   B.forEach(([x, n, h, c, body]) => {
@@ -295,7 +294,7 @@ const chip = (x, y, w, h, lines, fs, o = {}) => {
   s += L(366, 196, 266, 196, C.tuc, 3, '9 6').replace('/>', ' marker-end="url(#a1)"/>') + T(315, 222, 'gas volume', { fs: 20, a: 'middle', c: C.tuc });
   // 2 → 3
   s += L(632, 160, 734, 160, C.cap, 3.5).replace('/>', ' marker-end="url(#a0)"/>') + T(683, 102, 'φ, k', { fs: 20, a: 'middle' })
-     + T(683, 128, 'σ<tspan font-size="17" dy="5">min</tspan>', { fs: 21, a: 'middle' });
+     + T(683, 128, 'σ<tspan font-size="17" dy="5">3</tspan>', { fs: 21, a: 'middle' });
   // 3 → 2 (p, S, T) and 3 → 1 (heat)
   s += `<path d="M840 ${top + bh} V${top + bh + 30} H520 V${top + bh + 4}" fill="none" stroke="${C.cap}" stroke-width="3" marker-end="url(#a2)"/>`
      + T(680, top + bh + 56, 'pore pressure p, saturation S, temperature T', { fs: 21, a: 'middle', c: C.cap });
